@@ -10,7 +10,7 @@
 4. Navigate to your documents or wherever you want to store the repository (Using cd in your terminal)
 5. Run the following command to clone the repo ➡ `git clone https://github.com/MystikHub/sweng-12.git`
 6. You've now got the repo down! 🎆
-7. Navigate into the directory with the following command `cd Sweng-11`
+7. Navigate into the directory with the following command `cd sweng-12`
 8. Run the `git pull` command to get the most up to date code.
 
 ### For Linux
@@ -19,7 +19,7 @@
 2. Navigate to your documents or wherever you want to store the repository (Using cd in your terminal)
 3. Run the following command to clone the repo ➡ `git clone https://github.com/MystikHub/sweng-12.git`
 4. You've now got the repo down! 🎆
-5. Navigate into the directory with the following command `cd Sweng-11`
+5. Navigate into the directory with the following command `cd sweng-12`
 6. Run the `git pull` command to get the most up to date code.
 
 ### For Mac
@@ -30,7 +30,7 @@
 4. Navigate to your documents or wherever you want to store the repository (Using cd in your terminal)
 5. Run the following command to clone the repo ➡ `git clone https://github.com/MystikHub/sweng-12.git`
 6. You've now got the repo down! 🎆
-7. Navigate into the directory with the following command `cd Sweng-11`
+7. Navigate into the directory with the following command `cd sweng-12`
 8. Run the `git pull` command to get the most up to date code.
 
 
