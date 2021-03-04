@@ -75,3 +75,4 @@ The following links are handy if you need any git based help, or feel free to ju
 Imoesi Idogho
 Stefan Hutanu
 Sean Murphy
+James Fenlon
