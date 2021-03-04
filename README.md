@@ -74,3 +74,4 @@ The following links are handy if you need any git based help, or feel free to ju
 ## Contributors
 Imoesi Idogho
 Stefan Hutanu
+James Fenlon
