@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "fusioncharts": "^3.16.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
