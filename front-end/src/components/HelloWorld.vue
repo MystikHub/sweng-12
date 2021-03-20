@@ -27,14 +27,21 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <h3>Charts</h3>
+    <MultiStoreCustomers />
   </div>
 </template>
 
 <script>
+import MultiStoreCustomers from './MultiStoreCustomers'
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  components: {
+    MultiStoreCustomers
   }
 }
 </script>
