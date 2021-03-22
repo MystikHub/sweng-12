@@ -20,7 +20,23 @@ app.get('/multi_store_customers', (req, res) => {
     else if(req.query.store === "001")
         res.send({
             "multi_store_customers": 10,    // Customers that visited this store, as well as another store
-            "single_store_customers":  20   // Customers that only visited this store
+            "single_store_customers":  20,   // Customers that only visited this store
+        })
+    else
+        res.sendStatus(400)
+}),
+// Visit http://localhost:3000/stamp_total_trend?scheme=1 in your browser to test this
+app.get('/stamp_total_trend', (req, res) => {
+    enableLocalCors(res)
+
+    if(req.query.schemeNo === undefined)
+        res.sendStatus(400)
+    else if(req.query.schemeNo === "1")
+        res.send({
+            "stamp_total_trend": 16616,    // total number of stamps redeemed for drink scheme location 1
+            "pav2drink":  2670,   // total number of stamps redeemed for drink scheme location 2
+            "pav1sandwich": 0,  // total number of stamps redeemed for sanwich scheme location 1
+            "pav2sandwich": 195, // total number of stamps redeemed for sandwich scheme location 2
         })
     else
         res.sendStatus(400)

@@ -28,12 +28,15 @@
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
     <h3>Charts</h3>
+    
     <MultiStoreCustomers />
+    <stampTrend />
   </div>
 </template>
 
 <script>
 import MultiStoreCustomers from './MultiStoreCustomers'
+import stampTrend from './stampTrend'
 
 export default {
   name: 'HelloWorld',
@@ -41,7 +44,8 @@ export default {
     msg: String
   },
   components: {
-    MultiStoreCustomers
+    MultiStoreCustomers,
+    stampTrend
   }
 }
 </script>
