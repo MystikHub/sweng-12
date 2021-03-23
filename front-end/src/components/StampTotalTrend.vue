@@ -26,7 +26,7 @@ Charts(FusionCharts);
 
 const axios = require('axios').default;
 let api_server = 'http://localhost:5000';
-let scheme = '001'
+let scheme = '002'
 const dataSource={}
 
 export default {
