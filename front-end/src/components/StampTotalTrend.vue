@@ -1,5 +1,5 @@
 <template>
-  <div id="stamp_trends">
+  <div id="total-stamp-trend">
     <fusioncharts
     :type="type"
     :width="width"
@@ -25,8 +25,8 @@ Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme,FCComponent)
 Charts(FusionCharts);
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
-let scheme = '1'
+let api_server = 'http://localhost:5000';
+let scheme = '001'
 const dataSource={}
 
 export default {

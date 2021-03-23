@@ -25,13 +25,14 @@ app.get('/multi_store_customers', (req, res) => {
     else
         res.sendStatus(400)
 }),
+
 // Visit http://localhost:3000/stamp_total_trend?scheme=1 in your browser to test this
 app.get('/stamp_total_trend', (req, res) => {
     enableLocalCors(res)
 
     if(req.query.schemeNo === undefined)
         res.sendStatus(400)
-    else if(req.query.schemeNo === "1")
+    else if(req.query.schemeNo === "002")
         res.send({
             "stamp_total_trend": 16616,    // total number of stamps redeemed for drink scheme location 1
             "pav2drink":  2670,   // total number of stamps redeemed for drink scheme location 2

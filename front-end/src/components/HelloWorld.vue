@@ -30,13 +30,13 @@
     <h3>Charts</h3>
     
     <MultiStoreCustomers />
-    <stampTrend />
+    <StampTotalTrend />
   </div>
 </template>
 
 <script>
 import MultiStoreCustomers from './MultiStoreCustomers'
-import stampTrend from './stampTrend'
+import StampTotalTrend from './StampTotalTrend'
 
 export default {
   name: 'HelloWorld',
@@ -45,7 +45,7 @@ export default {
   },
   components: {
     MultiStoreCustomers,
-    stampTrend
+    StampTotalTrend
   }
 }
 </script>
