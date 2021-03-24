@@ -26,18 +26,23 @@ app.get('/multi_store_customers', (req, res) => {
         res.sendStatus(400)
 }),
 
-// Visit http://localhost:3000/stamp_total_trend?scheme=1 in your browser to test this
+// Visit http://localhost:3000/stamp_total_Trend?scheme=002 in your browser to test this
 app.get('/stamp_total_trend', (req, res) => {
     enableLocalCors(res)
 
-    if(req.query.schemeNo === undefined)
+    if(req.query.scheme === undefined)
         res.sendStatus(400)
-    else if(req.query.schemeNo === "002")
+    else if(req.query.scheme === "002")
         res.send({
-            "stamp_total_trend": 16616,    // total number of stamps redeemed for drink scheme location 1
-            "pav2drink":  2670,   // total number of stamps redeemed for drink scheme location 2
-            "pav1sandwich": 0,  // total number of stamps redeemed for sanwich scheme location 1
-            "pav2sandwich": 195, // total number of stamps redeemed for sandwich scheme location 2
+            "label1":'PAV-001',
+            "label2":'PAV-002',
+            "seriesname1":'PAV',
+            "value1":16616,
+            "value2":2670,
+            "seriesname2":'PAVSW',
+            "value6":0,
+            "value7":195,
+
         })
     else
         res.sendStatus(400)

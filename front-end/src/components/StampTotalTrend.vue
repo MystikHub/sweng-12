@@ -1,128 +1,167 @@
-<template>
-  <div id="total-stamp-trend">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
-</div>
-</template>
-
+// STEP 1: to include the dependencies
 <script>
 import Vue from 'vue';
 import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
-import Charts from 'fusioncharts/fusioncharts.charts';
+import Column2D from 'fusioncharts/fusioncharts.charts';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import Charts from "fusioncharts/fusioncharts.charts";
 import { FCComponent } from "vue-fusioncharts";
 
-//import the theme
-import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
-
-// register VueFusionCharts component
-Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme,FCComponent)
 Charts(FusionCharts);
-
+Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme, FCComponent);
 const axios = require('axios').default;
-let api_server = 'http://localhost:5000';
+let api_server = 'http://localhost:3000';
 let scheme = '002'
-const dataSource={}
+const dataStore={}
+
 
 export default {
-  name:"StampTotalTrend",
-    data(){
-        return{
-            type: "mscolumn2d",
-            width: "50%",
-            height: "100%",
-            dataFormat: "json",
-            drawcrossline: "1",
-            caption: "Stamp Trend",
-            subcaption: "The Pavilion Bar",
-            xaxisname: "Location",
-            yaxisname: "Total number of stamps redeemed",
-            formatnumberscale: "1",
-            plottooltext:
-            "<b>$dataValue</b> stamps were redeemed for the <b>$seriesName</b> in $label",
-            dataSource
-            
-        }
-    },
-    mounted(){
-        this.getData();
+    name: 'app',
+  data() {
+    return {
+      type: "mscolumn2d",
+      renderAt: "chart-container",
+      width: "550",
+      height: "550",
+      dataFormat: "json",
+      dataSource: dataStore
+    }
+  },
+    mounted() {
+        this.getData()
     },
     methods: {
-        async getData(){
+        async getData() {
 
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/stamp_total_trend?schemeNo=${scheme}`)
+            const formattedData = await axios.get(`${api_server}/stamp_total_Trend?scheme=${scheme}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
                     console.log(response.data)
 
-                    const dataSource =
-                        {
-                            chart: {
-                                caption: "Stamp Trend",
-                                subcaption: "The Pavilion Bar",
-                                xaxisname: "Location",
-                                yaxisname: "Total number of stamps redeemed",
-                                formatnumberscale: "1",
-                                plottooltext:
-                                "<b>$dataValue</b> stamps were redeemed for the <b>$seriesName</b> in $label",
-                                theme: "fusion",
-                                drawcrossline: "1"
-                            },
-                            categories: [
+                    const dataStore = {
+                        chart: {
+                            caption: "Total Stamps Collected",
+                            subcaption: "PAV",
+                            xaxisname: "Years",
+                            yaxisname: "Total number of apps in store",
+                            formatnumberscale: "1",
+                            plottooltext:
+                            "<b>$dataValue</b> apps were available on <b>$seriesName</b> in $label",
+                            theme: "fusion",
+                            drawcrossline: "1"
+                        },
+                        categories: [
+                            {
+                            category: [
                                 {
-                                    category: [
-                                        {
-                                        label: "PAV 1"
-                                        },
-                                        {
-                                        label: "PAV 2"
-                                        }
-                                    ]
+                                label: response.data.label1
+                                },
+                                {
+                                label: response.data.label2
+                                },
+                                {
+                                label: response.data.label3
+                                },
+                                {
+                                label: response.data.label4
+                                },
+                                {
+                                label: response.data.label5
                                 }
-                            ],
-                            dataset: [
-                                {
-                                    seriesname: "Drinks Scheme",
-                                    data: [
-                                        {
-                                        value: response.data.stamp_total_trend
-                                        },
-                                        {
-                                        value: response.data.pav2drinks
-                                        }
-                                    ]
-                                },
-                                {
-                                    seriesname: "Sandwich Scheme",
-                                    data: [
-                                        {
-                                        value: response.data.pav1sandwich
-                                        },
-                                        {
-                                        value: response.data.sandwich
-                                        }
-                                    ]
-                                },
-                                    
                             ]
-                        }
+                            }
+                        ],
+                        dataset: [
+                            {
+                            seriesname: response.data.seriesname1,
+                            data: [
+                                {
+                                value: response.data.value1
+                                },
+                                {
+                                value: response.data.value2
+                                },
+                                {
+                                value: response.data.value3
+                                },
+                                {
+                                value: response.data.value4
+                                },
+                                {
+                                value: response.data.value5
+                                }
+                            ]
+                            },
+                            {
+                            seriesname: response.data.seriesname2,
+                            data: [
+                                {
+                                value: response.data.value6
+                                },
+                                {
+                                value: response.data.value7
+                                },
+                                {
+                                value: response.data.value8
+                                },
+                                {
+                                value: response.data.value9
+                                },
+                                {
+                                value: response.data.value10
+                                }
+                            ]
+                            },
+                            {
+                            seriesname: response.data.seriesname3,
+                            data: [
+                                {
+                                value: response.data.value11
+                                },
+                                {
+                                value: response.data.value12
+                                },
+                                {
+                                value: response.data.value13
+                                },
+                                {
+                                value: response.data.value14
+                                },
+                                {
+                                value: response.data.value15
+                                }
+                            ]
+                            }
+                        ]
+                        };
                     
-                    return dataSource
+                    return dataStore
                 })
                 .catch(function (error) {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-            this.dataSource.data = formattedData;
+            this.dataSource = formattedData;
         }
     }
 }
-
 </script>
+
+//STEP 4: Render the chart
+<template>
+  <div id="app">
+    <div id="chart-container">
+      <fusioncharts
+      :type="type"
+      :width="width"
+      :height="height"
+      :dataformat="dataFormat"
+      :dataSource="dataSource"
+      >
+      </fusioncharts>
+    </div>
+  </div>
+</template>
