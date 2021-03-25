@@ -11,9 +11,21 @@ let stampss=[];
 function enableLocalCors(res) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
 }
+// Visit http://localhost:3000/multi_store_customers?store=001 in your browser to test this
+app.get('/multi_store_customers', (req, res) => {
+    enableLocalCors(res)
 
+    if(req.query.store === undefined)
+        res.sendStatus(400)
+    else if(req.query.store === "001")
+        res.send({
+            "multi_store_customers": 10,    // Customers that visited this store, as well as another store
+            "single_store_customers":  20,   // Customers that only visited this store
+        })
+    else
+        res.sendStatus(400)
+}),
 
-/*this works to output both series names*/
 // Visit http://localhost:3000/stamp_total_Trend?scheme=002 in your browser to test this
 app.get('/stamp_total_Trend', (req, res) => {
     enableLocalCors(res)
@@ -50,20 +62,18 @@ app.get('/stamp_total_Trend', (req, res) => {
                 iterateObject(item)
         })
 
-        
-        stampy[0] = Object.values(stampss[0]);
-        stampy[1] = Object.values(stampss[1]);
-        stampy[2] = 0;
-        stampy[3] = Object.values(stampss[2]);
+        for(let i=0;i<stampss.length;i++){
+            stampy[i] = Object.values(stampss[i]); //last one in the array will be the total number between every store and every scheme
+        }
         res.send(({
             "seriesname1": series[0],
             "seriesname2": series[1],
             "label1": locations[0],
             "label2": locations[1],
             "value1" : stampy[0],
-            "value3" : stampy[2],
+            "value3" : 0,
             "value2" : stampy[1],
-            "value4" : stampy[3]
+            "value4" : stampy[2]
         }))
     }
     else{
@@ -86,41 +96,8 @@ function iterateObject(obj){
             }
         }
     }
-    
-    
 }
-console.log(stampss);
-/*this works to return total stamps in one'branch'*/
-/*app.get('/', (req, res) => {
-    let findJson = fs.readFileSync('./totals.json');
-    let wholeJson = JSON.parse(findJson);
-    let stamp
-    var pav=[]
-    pav = wholeJson.PAVSW.PAVSWTWO
-    Object.keys(pav).forEach(key => {
-        if(key === "Stamps"){
-            stamp=(pav[key]);
-            res.send({"stampy": stamp})
-        }
-      });
-      
-});*/
 
-// Visit http://localhost:3000/number_of_seriesName in your browser to test this
-/*app.get('/', (req, res) => {
-    let findJson = fs.readFileSync('./totals.json');
-    let wholeJson = JSON.parse(findJson);
-    var keys=[]
-    let numberOfSeries
-    //keys = Object.keys(wholeJson)
-    Object.keys(wholeJson).forEach(key => {
-        if(key === "PAVONE"){
-            keys.push(wholeJson[key]);
-        }
-      });
-    res.send(keys)
-      
-});*/
 // listen on the port
 app.listen(port, () => {
     console.log(`Back end api reference listening at http://localhost:${port}`)
