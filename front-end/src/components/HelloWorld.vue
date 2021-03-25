@@ -31,12 +31,14 @@
     
     <MultiStoreCustomers />
     <StampTotalTrend />
+    <PercentHaveRedeemed />
   </div>
 </template>
 
 <script>
 import MultiStoreCustomers from './MultiStoreCustomers'
 import StampTotalTrend from './StampTotalTrend'
+import PercentHaveRedeemed from './PercentHaveRedeemed'
 
 export default {
   name: 'HelloWorld',
@@ -45,7 +47,8 @@ export default {
   },
   components: {
     MultiStoreCustomers,
-    StampTotalTrend
+    StampTotalTrend,
+    PercentHaveRedeemed
   }
 }
 </script>

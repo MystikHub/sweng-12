@@ -7,7 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 //var url = require('url'); //Split up the web address
 const fs = require("fs"); //File system
 let stampss=[];
-
+let unused=[];
 function enableLocalCors(res) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
 }
@@ -42,8 +42,6 @@ app.get('/stamp_total_Trend', (req, res) => {
         var allLocations = Object.keys(rawredemptionsJson)
         var allStamps = Object.entries(totalsJson)
 
-        let totStamp
-
         var series=[] // all series for graph
         var locations=[] // all locations of company
         var stampy=[] //all stamps
@@ -57,9 +55,8 @@ app.get('/stamp_total_Trend', (req, res) => {
                     locations.push(value);
                 }
             })
-        
         allStamps.filter(item=>{
-                iterateObject(item)
+                iterationObject(item)
         })
 
         for(let i=0;i<stampss.length;i++){
@@ -81,18 +78,85 @@ app.get('/stamp_total_Trend', (req, res) => {
     }   
 });
 
-function iterateObject(obj){
+function iterationObject(obj){
     let inner_obj = {};    
 
     for(prop in obj){
         if(typeof(obj[prop])=="object"){
-            iterateObject(obj[prop]);
+            iterationObject(obj[prop]);
         }
         else{
             if(prop=="Stamps"){
                 console.log(prop.toUpperCase()+':', obj[prop]);
                 inner_obj[prop] = obj[prop];
                 stampss.push(inner_obj);
+            }
+        }
+    }
+}
+
+
+// Visit http://localhost:3000/percent_have_redeemed?scheme=002 in your browser to test this
+app.get('/percent_have_redeemed', (req, res) => {
+    enableLocalCors(res)
+    if(req.query.scheme === undefined){
+        res.sendStatus(400)
+    }
+    else if(req.query.scheme === "002"){
+        let findTotalsJson = fs.readFileSync('./totals.json');
+        let totalsJson = JSON.parse(findTotalsJson);
+
+        var allSeries = Object.keys(totalsJson)
+        var allStamps = Object.entries(totalsJson)
+        var allUnRed = Object.entries(totalsJson)
+        var unredeemed=[]
+        var stampy=[]
+        var series=[] // all series for graph
+
+        allSeries.forEach(value => {
+                if (value != "Overall") {
+                    series.push(value);
+                }
+            })
+            allStamps.filter(item=>{
+                iterationObject(item)
+        })
+        for(let i=0;i<stampss.length;i++){
+            stampy[i] = Object.values(stampss[i]); //last one in the array will be the total number between every store and every scheme
+        }
+            
+        allUnRed.filter(item=>{
+            iterateObject(item)
+        })
+       
+        unredeemed[0] = Object.values(unused[0])
+            res.send({
+                "label1": "Total number of stamps",
+                "label2": "Total number of unredeemed stamps",
+                "value1": stampy[3],
+                "value2": unredeemed
+            })
+    }
+    else{
+        res.sendStatus(400)
+    }
+   
+});
+
+
+function iterateObject(obj){
+    let inner_obj = {};    
+
+    for(prop in obj){
+        if(typeof(obj[prop])=="object"){
+            iterateObject(obj[prop]);
+            console.log("iterating")
+        }
+        else{
+            if(prop=="Unredeemed Vouchers"){
+                console.log(prop.toUpperCase()+':', obj[prop]);
+                inner_obj[prop] = obj[prop];
+                unused.push(inner_obj);
             }
         }
     }
