@@ -1,0 +1,13 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "The Backend server for the project which will recieve requests and send responses of and for the data from the frontend from a JSON file at first and if we have time the NoSQL database.",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
