@@ -46,10 +46,10 @@ export default {
                             caption: "Total Stamps Collected",
                             subcaption: "PAV",
                             xaxisname: "Years",
-                            yaxisname: "Total number of apps in store",
+                            yaxisname: "Total number of stamps",
                             formatnumberscale: "1",
                             plottooltext:
-                            "<b>$dataValue</b> apps were available on <b>$seriesName</b> in $label",
+                            "<b>$dataValue</b> stamps were collected for scheme <b>$seriesName</b> in $label",
                             theme: "fusion",
                             drawcrossline: "1"
                         },
@@ -61,15 +61,6 @@ export default {
                                 },
                                 {
                                 label: response.data.label2
-                                },
-                                {
-                                label: response.data.label3
-                                },
-                                {
-                                label: response.data.label4
-                                },
-                                {
-                                label: response.data.label5
                                 }
                             ]
                             }
@@ -83,15 +74,6 @@ export default {
                                 },
                                 {
                                 value: response.data.value2
-                                },
-                                {
-                                value: response.data.value3
-                                },
-                                {
-                                value: response.data.value4
-                                },
-                                {
-                                value: response.data.value5
                                 }
                             ]
                             },
@@ -99,42 +81,14 @@ export default {
                             seriesname: response.data.seriesname2,
                             data: [
                                 {
-                                value: response.data.value6
+                                value: response.data.value3
                                 },
                                 {
-                                value: response.data.value7
-                                },
-                                {
-                                value: response.data.value8
-                                },
-                                {
-                                value: response.data.value9
-                                },
-                                {
-                                value: response.data.value10
+                                value: response.data.value4
                                 }
                             ]
                             },
-                            {
-                            seriesname: response.data.seriesname3,
-                            data: [
-                                {
-                                value: response.data.value11
-                                },
-                                {
-                                value: response.data.value12
-                                },
-                                {
-                                value: response.data.value13
-                                },
-                                {
-                                value: response.data.value14
-                                },
-                                {
-                                value: response.data.value15
-                                }
-                            ]
-                            }
+                            
                         ]
                         };
                     
