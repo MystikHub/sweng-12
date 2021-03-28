@@ -29,11 +29,13 @@
     </ul>
     <h3>Charts</h3>
     <MultiStoreCustomers />
+    <RetentionRate />
   </div>
 </template>
 
 <script>
 import MultiStoreCustomers from './MultiStoreCustomers'
+import RetentionRate from './RetentionRate'
 
 export default {
   name: 'HelloWorld',
@@ -41,7 +43,8 @@ export default {
     msg: String
   },
   components: {
-    MultiStoreCustomers
+    MultiStoreCustomers,
+    RetentionRate
   }
 }
 </script>
