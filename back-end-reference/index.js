@@ -37,7 +37,7 @@ app.get('/retention_rate', (req, res) => {
     })
 })
 
-// Visit http://localhost:3000/retention_rate in your browser to test this
+// Visit http://localhost:3000/customer_growth in your browser to test this
 app.get('/customer_growth', (req, res) => {
     enableLocalCors(res)
 
