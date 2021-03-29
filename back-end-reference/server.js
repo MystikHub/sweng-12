@@ -87,7 +87,6 @@ function iterationObject(obj){
         }
         else{
             if(prop=="Stamps"){
-                console.log(prop.toUpperCase()+':', obj[prop]);
                 inner_obj[prop] = obj[prop];
                 stampss.push(inner_obj);
             }
@@ -97,7 +96,7 @@ function iterationObject(obj){
 
 
 // Visit http://localhost:3000/percent_have_redeemed?scheme=002 in your browser to test this
-app.get('/percent_have_redeemed', (req, res) => {
+app.get('/total_redeemed_total_unredeemed', (req, res) => {
     enableLocalCors(res)
     if(req.query.scheme === undefined){
         res.sendStatus(400)
@@ -150,17 +149,45 @@ function iterateObject(obj){
     for(prop in obj){
         if(typeof(obj[prop])=="object"){
             iterateObject(obj[prop]);
-            console.log("iterating")
         }
         else{
             if(prop=="Unredeemed Vouchers"){
-                console.log(prop.toUpperCase()+':', obj[prop]);
                 inner_obj[prop] = obj[prop];
                 unused.push(inner_obj);
             }
         }
     }
 }
+
+// Visit http://localhost:3000/actual_totals_pie?scheme=002 in your browser to test this
+app.get('/actual_totals_pie', (req, res) => {
+    enableLocalCors(res)
+    if(req.query.scheme === undefined){
+        res.sendStatus(400)
+    }
+    else if(req.query.scheme === "002"){
+        let findRawPurchasesJson = fs.readFileSync('./rawpurchases.json');
+        let rawpurchasesJson = JSON.parse(findRawPurchasesJson);
+        var test =[]
+        var loc1 =[]
+        var loc2 =[]
+        var sw =[]
+        test = Object.keys(rawpurchasesJson)
+        test.forEach(value => {
+                if(value === test[0]){
+                    test = Object.keys(rawpurchasesJson.test[0])
+                    res.send({
+                        test
+                    })
+                }
+        })
+        
+    }
+    else{
+        res.sendStatus(400)
+    }
+   
+});
 
 // listen on the port
 app.listen(port, () => {
