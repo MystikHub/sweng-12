@@ -34,7 +34,7 @@ export default {
     methods: {
         async getData() {
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/percent_have_redeemed?scheme=${scheme}`)
+            const formattedData = await axios.get(`${api_server}/total_redeemed_total_unredeemed?scheme=${scheme}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
