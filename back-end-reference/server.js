@@ -26,16 +26,16 @@ app.get('/multi_store_customers', (req, res) => {
         res.sendStatus(400)
 }),
 
-// Visit http://localhost:3000/stamp_total_Trend?scheme=002 in your browser to test this
-app.get('/stamp_total_Trend', (req, res) => {
+// Visit http://localhost:3000/stamp_total_trend?scheme=002 in your browser to test this
+app.get('/stamp_total_trend', (req, res) => {
     enableLocalCors(res)
     if(req.query.scheme === undefined){
         res.sendStatus(400)
     }
     else if(req.query.scheme === "002"){
-        let findTotalsJson = fs.readFileSync('./totals.json');
+        let findTotalsJson = fs.readFileSync('../back-end/backendData/totals.json');
         let totalsJson = JSON.parse(findTotalsJson);
-        let findRawRedemptionsJson = fs.readFileSync('./rawredemptions.json');
+        let findRawRedemptionsJson = fs.readFileSync('../back-end/backendData/rawredemptions.json');
         let rawredemptionsJson = JSON.parse(findRawRedemptionsJson);
 
         var allSeries = Object.keys(totalsJson)
@@ -103,7 +103,7 @@ app.get('/percent_have_redeemed', (req, res) => {
         res.sendStatus(400)
     }
     else if(req.query.scheme === "002"){
-        let findTotalsJson = fs.readFileSync('./totals.json');
+        let findTotalsJson = fs.readFileSync('../back-end/backendData/totals.json');
         let totalsJson = JSON.parse(findTotalsJson);
 
         var allSeries = Object.keys(totalsJson)
