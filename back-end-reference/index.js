@@ -26,6 +26,17 @@ app.get('/multi_store_customers', (req, res) => {
         res.sendStatus(400)
 })
 
+// Visit http://localhost:3000/retention_rate in your browser to test this
+app.get('/retention_rate', (req, res) => {
+    enableLocalCors(res)
+
+    res.send({
+        "loyal_customers": 55,      // Customers that have been a customer 60-30 days ago
+                                    //   and have redeemed a stamp in the past 30 days
+        "not_loyal_customers":  34  // Other customers
+    })
+})
+
 app.listen(port, () => {
     console.log(`Back end api reference listening at http://localhost:${port}`)
     console.log(`Restart node.js after making changes`)
