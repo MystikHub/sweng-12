@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
-const multipleStore = require("./multiStore");
 const selector = require("./selector");
+const multipleStore = require("./multiStore");
+const retention = require("./retention");
 
 const port = 3000;
 
@@ -14,14 +15,19 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/all_stores', (req, res) => {
+  enableLocalCors(res)
+  selector(req,res)
+})
+
 app.get('/multi_store_customers', (req, res) => {
   enableLocalCors(res)
   multipleStore(req, res)
 })
 
-app.get('/all_stores', (req, res) => {
+app.get('/retention_rate', (req, res) => {
   enableLocalCors(res)
-  selector(req,res)
+  retention(req, res)
 })
 
 app.listen(port, () => {
