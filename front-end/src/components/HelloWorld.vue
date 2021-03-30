@@ -30,13 +30,14 @@
     <h3>Charts</h3>
     <MultiStoreCustomers />
     <RetentionRate />
+    <CustomerGrowth/>
   </div>
 </template>
 
 <script>
 import MultiStoreCustomers from './MultiStoreCustomers'
 import RetentionRate from './RetentionRate'
-
+import CustomerGrowth from './CustomerGrowth'
 export default {
   name: 'HelloWorld',
   props: {
@@ -44,7 +45,8 @@ export default {
   },
   components: {
     MultiStoreCustomers,
-    RetentionRate
+    RetentionRate,
+    CustomerGrowth
   }
 }
 </script>
