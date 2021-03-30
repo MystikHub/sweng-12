@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const selector = require("./selector");
 const multipleStore = require("./multiStore");
 const retention = require("./retention");
 
@@ -12,6 +13,11 @@ function enableLocalCors(res) {
 app.get('/', (req, res) => {
   enableLocalCors(res)
   res.send('Hello World!')
+})
+
+app.get('/all_stores', (req, res) => {
+  enableLocalCors(res)
+  selector(req,res)
 })
 
 app.get('/multi_store_customers', (req, res) => {
