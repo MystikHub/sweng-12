@@ -1,16 +1,25 @@
 <template>
   <div id="dashboard">
-    <ChartGrid />
+    <el-container>
+      <el-header>
+        <Header />
+      </el-header>
+      <el-main>
+        <ChartGrid />
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-import ChartGrid from './components/ChartGrid.vue'
+import ChartGrid from './components/ChartGrid'
+import Header from './components/Header'
 
 export default {
   name: 'App',
   components: {
-    ChartGrid
+    ChartGrid,
+    Header
   }
 }
 </script>
@@ -25,7 +34,6 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>
