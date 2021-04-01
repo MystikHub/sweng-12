@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="dashboard">
     <img alt="Vue logo" src="./assets/logo.png">
     <ChartGrid msg="Welcome to Group 12's SWENG project"/>
   </div>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-#app {
+#dashboard {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
