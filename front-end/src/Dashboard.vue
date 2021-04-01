@@ -1,7 +1,6 @@
 <template>
   <div id="dashboard">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <ChartGrid msg="Welcome to Group 12's SWENG project"/>
+    <ChartGrid />
   </div>
 </template>
 
