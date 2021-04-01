@@ -4,6 +4,9 @@
       <el-header>
         <Header />
       </el-header>
+      <el-container id="store-selector">
+        <StoreSelector />
+      </el-container>
       <el-main>
         <ChartGrid />
       </el-main>
@@ -14,12 +17,14 @@
 <script>
 import ChartGrid from './components/ChartGrid'
 import Header from './components/Header'
+import StoreSelector from './components/StoreSelector'
 
 export default {
   name: 'App',
   components: {
     ChartGrid,
-    Header
+    Header,
+    StoreSelector
   }
 }
 </script>
@@ -28,6 +33,10 @@ export default {
 body {
   margin: 0;
   background-color: #F7F7F7;
+}
+
+#store-selector {
+  padding: 0 20px;
 }
 
 #dashboard {
