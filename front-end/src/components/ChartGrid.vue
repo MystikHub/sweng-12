@@ -1,7 +1,13 @@
 <template>
   <div class="hello">
-    <MultiStoreCustomers />
-    <RetentionRate />
+    <el-row :gutter="30">
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <MultiStoreCustomers />
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <RetentionRate />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -33,5 +39,8 @@ li {
 }
 a {
   color: #42b983;
+}
+#card-bottom {
+  margin-bottom: 30px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div id='retention-rate-customers-chart'>
+    <el-card class="box-card" id='retention-rate-customers-chart'>
         <fusioncharts
         :type="type"
         :width="width"
@@ -8,7 +8,7 @@
         :dataSource="dataSource"
         >
         </fusioncharts>
-    </div>
+    </el-card>
 </template>
 
 <script>

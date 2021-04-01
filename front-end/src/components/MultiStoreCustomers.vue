@@ -1,5 +1,5 @@
 <template>
-    <div id='multi-store-customers-chart'>
+    <el-card id='multi-store-customers-chart'>
         <fusioncharts
         :type="type"
         :width="width"
@@ -8,7 +8,7 @@
         :dataSource="dataSource"
         >
         </fusioncharts>
-    </div>
+    </el-card>
 </template>
 
 <script>
