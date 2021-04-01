@@ -3,6 +3,7 @@ const app = express()
 const selector = require("./selector");
 const multipleStore = require("./multiStore");
 const retention = require("./retention");
+const vouncherCount = require('./voucherCount');
 
 const port = 3000;
 
@@ -28,6 +29,11 @@ app.get('/multi_store_customers', (req, res) => {
 app.get('/retention_rate', (req, res) => {
   enableLocalCors(res)
   retention(req, res)
+})
+
+app.get('/voucher_purchase_counts', (req, res) => {
+  enableLocalCors(res)
+  vouncherCount(req, res)
 })
 
 app.listen(port, () => {
