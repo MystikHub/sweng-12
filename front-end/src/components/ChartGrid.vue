@@ -38,7 +38,7 @@ import MultiStoreCustomers from './MultiStoreCustomers'
 import RetentionRate from './RetentionRate'
 
 export default {
-  name: 'HelloWorld',
+  name: 'ChartGrid',
   props: {
     msg: String
   },

@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Group 12's SWENG project"/>
+    <ChartGrid msg="Welcome to Group 12's SWENG project"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ChartGrid from './components/ChartGrid.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ChartGrid
   }
 }
 </script>
