@@ -10,14 +10,15 @@ async function mostPopularVoucherSize (req, res) {
     else if(req.query.scheme === "002"){
         
             res.send({
-                "label1": "Total number of stamps",
-                "label2": "Total number of unredeemed stamps",
-                "label3": "Total number of stamps",
-                "label4": "Total number of unredeemed stamps",
-                "label5": "Total number of unredeemed stamps",
+                "label1": "PAV-001",
+                "label2": "PAV-002",
+                "label3": "PAVSW-001",
+                "label4": "Unredeemed",
 
-                "value1": stampy[3],
-                "value2": unredeemed
+                "value1": 100,
+                "value2": 125,
+                "value3": 245,
+                "value4": 140
             })
     }
     else{
