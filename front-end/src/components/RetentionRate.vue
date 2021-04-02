@@ -1,5 +1,5 @@
 <template>
-    <el-card class="box-card" id='retention-rate-customers-chart'>
+    <el-card id='retention-rate-customers-chart' v-loading="loading">
         <fusioncharts
         :type="type"
         :width="width"
@@ -44,7 +44,8 @@ export default {
                     theme: "fusion"
                 },
                 "data": chartData
-            }
+            },
+            loading: true
         }
     },
     mounted() {
@@ -77,7 +78,8 @@ export default {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-            this.dataSource.data = formattedData;
+            this.dataSource.data = formattedData
+            this.loading = false
         }
     }
 }
