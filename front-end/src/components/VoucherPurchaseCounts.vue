@@ -1,5 +1,5 @@
 <template>
-    <div id='voucher-purchase-counts-chart'>
+    <el-card id='voucher-purchase-counts-chart' v-loading="loading">
         <fusioncharts
         :type="type"
         :width="width"
@@ -8,7 +8,7 @@
         :dataSource="dataSource"
         >
         </fusioncharts>
-    </div>
+    </el-card>
 </template>
 
 <script>
@@ -18,11 +18,11 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Column2D from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import constants from '../constants'
 
 Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
 let chartData = []
 
 export default {
@@ -33,8 +33,8 @@ export default {
             showPercentInTooltip: 0,
             theme: "fusion",
             renderAt: "voucher-purchase-counts-chart",
-            width: 550,
-            height: 550,
+            width: constants.chart_width,
+            height: constants.chart_height,
             dataformat: "json",
             dataSource: {
                 "chart": {
@@ -43,7 +43,8 @@ export default {
                     theme: "fusion"
                 },
                 "data": chartData
-            }
+            },
+            loading: true
         }
     },
     mounted() {
@@ -52,7 +53,7 @@ export default {
     methods: {
         async getData() {
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/voucher_purchase_counts`)
+            const formattedData = await axios.get(`${constants.api_server}/voucher_purchase_counts`)
                 .then(function (response) {
                     // Handle success
                     chartData = [
@@ -73,6 +74,7 @@ export default {
                     console.log(error)
                 });
             this.dataSource.data = formattedData;
+            this.loading = false
         }
     }
 }
