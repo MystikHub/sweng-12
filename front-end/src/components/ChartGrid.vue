@@ -7,6 +7,9 @@
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <RetentionRate />
       </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <VoucherPurchaseCounts />
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -14,12 +17,14 @@
 <script>
 import MultiStoreCustomers from './MultiStoreCustomers'
 import RetentionRate from './RetentionRate'
+import VoucherPurchaseCounts from './VoucherPurchaseCounts'
 
 export default {
   name: 'ChartGrid',
   components: {
     MultiStoreCustomers,
-    RetentionRate
+    RetentionRate,
+    VoucherPurchaseCounts
   },
   methods: {
     updateCharts(newStore) {
