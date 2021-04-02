@@ -39,6 +39,7 @@ export default {
             dataSource: {
                 "chart": {
                     caption: "Customer Retention Rate",
+                    paletteColors: constants.palette,
                     subcaption: "Customers from 60-30 days ago who also redeemed a stamp in the past 30 days",
                     showPercentInTooltip: "1",
                     theme: "fusion"

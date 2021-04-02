@@ -39,6 +39,7 @@ export default {
             dataSource: {
                 "chart": {
                     caption: "Total vouchers purchased",
+                    paletteColors: constants.palette,
                     showPercentInTooltip: "1",
                     theme: "fusion"
                 },
