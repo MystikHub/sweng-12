@@ -39,6 +39,7 @@ export default {
             dataformat: "json",
             dataSource: {
                 "chart": {
+                    paletteColors: constants.palette,
                     caption: "Percentage of customers of this store that have also visited another store",
                     showPercentInTooltip: "1",
                     theme: "fusion"
