@@ -20,7 +20,7 @@ import Header from './components/Header'
 import StoreSelector from './components/StoreSelector'
 
 export default {
-  name: 'App',
+  name: 'Dashboard',
   components: {
     ChartGrid,
     Header,
