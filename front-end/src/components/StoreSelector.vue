@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
     <h5 id="selector-label">Showing data for:</h5>
-    <el-select v-model="value" placeholder="Select a store" class="w-100">
+    <el-select v-model="value" placeholder="Select a store" class="w-100" @change="onStoreChanged">
         <el-option
         v-for="item in options"
         :key="item.value"
@@ -47,6 +47,9 @@ export default {
                 })
             this.options = options
             this.value = options[0].value
+        },
+        onStoreChanged(newStore) {
+            this.$emit("storeChanged", newStore)
         }
     }
 }
