@@ -5,10 +5,10 @@
         <Header />
       </el-header>
       <el-container id="store-selector">
-        <StoreSelector />
+        <StoreSelector @storeChanged="updateStore"/>
       </el-container>
       <el-main>
-        <ChartGrid />
+        <ChartGrid ref="chartGrid"/>
       </el-main>
     </el-container>
   </div>
@@ -25,6 +25,12 @@ export default {
     ChartGrid,
     Header,
     StoreSelector
+  },
+  methods: {
+    updateStore(newStore) {
+      this.$refs.chartGrid.updateCharts(newStore)
+      console.log(newStore)
+    }
   }
 }
 </script>
