@@ -30,12 +30,14 @@
     <h3>Charts</h3>
     <MultiStoreCustomers />
     <RetentionRate />
+    <VoucherPurchaseCounts />
   </div>
 </template>
 
 <script>
 import MultiStoreCustomers from './MultiStoreCustomers'
 import RetentionRate from './RetentionRate'
+import VoucherPurchaseCounts from './VoucherPurchaseCounts'
 
 export default {
   name: 'HelloWorld',
@@ -44,7 +46,8 @@ export default {
   },
   components: {
     MultiStoreCustomers,
-    RetentionRate
+    RetentionRate,
+    VoucherPurchaseCounts
   }
 }
 </script>
