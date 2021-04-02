@@ -2,7 +2,7 @@
   <div class="hello">
     <el-row :gutter="30">
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
-        <MultiStoreCustomers />
+        <MultiStoreCustomers ref="multiStoreChart"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <RetentionRate />
@@ -20,6 +20,11 @@ export default {
   components: {
     MultiStoreCustomers,
     RetentionRate
+  },
+  methods: {
+    updateCharts(newStore) {
+      this.$refs.multiStoreChart.getData(newStore)
+    }
   }
 }
 </script>
