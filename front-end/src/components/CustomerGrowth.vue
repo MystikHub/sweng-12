@@ -61,47 +61,16 @@ export default {
                     console.log("Here's the response")
                     console.log(response.data)
 
-
-                   chartData = [
-                        {
-                            label: response.data.timescale_of_the_dates[0],
-                            value: response.data.customer_growth_over_time[0],
-                            
-                        },
-                        {
-                            label: response.data.timescale_of_the_dates[1],
-                            value: response.data.customer_growth_over_time[1]
-                        },
-                        
-                         {
-                            label: response.data.timescale_of_the_dates[2],
-                            value: response.data.customer_growth_over_time[2]
-                        },
-
-                         {
-                            label: response.data.timescale_of_the_dates[3],
-                            value: response.data.customer_growth_over_time[3]
-                        },
-
-                         {
-                            label: response.data.timescale_of_the_dates[4],
-                            value: response.data.customer_growth_over_time[4]
-                        },
-
-                         {
-                            label: response.data.timescale_of_the_dates[5],
-                            value: response.data.customer_growth_over_time[5]
-                        },
-
-                         {
-                            label: response.data.timescale_of_the_dates[6],
-                            value: response.data.customer_growth_over_time[6]
-                        }
-            
-                    ]
-
+                   let chartData = []
+                      var i;
+                      for (i = 0; i < response.data.timescale_of_the_dates.length; i++) {
+                         chartData.push (
+                             {      label: response.data.timescale_of_the_dates[i],
+                                    value: response.data.customer_growth_over_time[i],
+                             })
+                         }
                     return chartData 
-                })
+                }) 
                 .catch(function (error) {
                     console.log("Something went wrong!")
                     console.log(error)
