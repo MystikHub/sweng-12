@@ -5,6 +5,7 @@ const multipleStore = require("./multiStore");
 const stampTotalTrend = require("./stampTotalTrend");
 const totalRedeemedTotalUnredeemed = require("./totalRedeemedTotalUnredeemed");
 const actualTotalsPie = require("./actualTotalsPie");
+const mostPopularVoucherSize = require("./mostPopularVoucherSize");
 
 const port = 3000;
 
@@ -35,6 +36,11 @@ app.get('/total_redeemed_total_unredeemed', (req, res) => {
 app.get('/actual_totals_pie', (req, res) => {
   enableLocalCors(res)
   actualTotalsPie(req, res)
+})
+
+app.get('/most_popular_scheme', (req, res) => {
+  enableLocalCors(res)
+  mostPopularVoucherSize(req, res)
 })
 
 app.listen(port, () => {
