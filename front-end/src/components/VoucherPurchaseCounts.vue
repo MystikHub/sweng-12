@@ -1,5 +1,5 @@
 <template>
-    <div id='retention-rate-customers-chart'>
+    <div id='voucher-purchase-counts-chart'>
         <fusioncharts
         :type="type"
         :width="width"
@@ -18,28 +18,27 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Column2D from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import constants from '../constants'
 
 Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
 
 const axios = require('axios').default;
+let api_server = 'http://localhost:3000';
 let chartData = []
 
 export default {
-    name: "RetentionRate",
+    name: "VoucherPurchaseCounts",
     data() {
         return {
             type: "column2d",
             showPercentInTooltip: 0,
             theme: "fusion",
-            renderAt: "retention-rate-customers-chart",
-            width: constants.chart_width,
-            height: constants.chart_height,
+            renderAt: "voucher-purchase-counts-chart",
+            width: 550,
+            height: 550,
             dataformat: "json",
             dataSource: {
                 "chart": {
-                    caption: "Customer Retention Rate",
-                    subcaption: "Customers from 60-30 days ago who also redeemed a stamp in the past 30 days",
+                    caption: "Total vouchers purchased",
                     showPercentInTooltip: "1",
                     theme: "fusion"
                 },
@@ -52,22 +51,18 @@ export default {
     },
     methods: {
         async getData() {
-
             // Get the chart data
-            const formattedData = await axios.get(`${constants.api_server}/retention_rate`)
+            const formattedData = await axios.get(`${api_server}/voucher_purchase_counts`)
                 .then(function (response) {
                     // Handle success
-                    console.log("Here's the response")
-                    console.log(response.data)
-
                     chartData = [
                         {
-                            label: "Loyal customers",
-                            value: response.data.loyal_customers
+                            label: "Vouchers purchased",
+                            value: response.data.vouchers
                         },
                         {
-                            label: "Other customers",
-                            value: response.data.not_loyal_customers
+                            label: "Voucher packages purchased",
+                            value: response.data.voucher_packages
                         }
                     ]
 

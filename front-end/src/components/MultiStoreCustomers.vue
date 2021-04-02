@@ -18,11 +18,11 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Pie2D from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import constants from '../constants'
 
 Vue.use(VueFusionCharts, FusionCharts, Pie2D, FusionTheme);
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
 let store_name = '001'
 let chartData = []
 
@@ -34,8 +34,8 @@ export default {
             showPercentInTooltip: 0,
             theme: "fusion",
             renderAt: "multi-store-customers-chart",
-            width: 550,
-            height: 550,
+            width: constants.chart_width,
+            height: constants.chart_height,
             dataformat: "json",
             dataSource: {
                 "chart": {
@@ -54,7 +54,7 @@ export default {
         async getData() {
 
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/multi_store_customers?store=${store_name}`)
+            const formattedData = await axios.get(`${constants.api_server}/multi_store_customers?store=${store_name}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")

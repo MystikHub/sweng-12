@@ -47,6 +47,16 @@ app.get('/customer_growth', (req, res) => {
     })
 })
 
+// Visit http://localhost:3000/voucher_purchase_counts in your browser to test this
+app.get('/voucher_purchase_counts', (req, res) => {
+    enableLocalCors(res)
+
+    res.send({
+            "vouchers": 1155,
+            "voucher_packages": 231
+        })
+})
+
 app.listen(port, () => {
     console.log(`Back end api reference listening at http://localhost:${port}`)
     console.log(`Restart node.js after making changes`)
