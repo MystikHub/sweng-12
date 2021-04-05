@@ -47,10 +47,12 @@ export default {
                 })
             this.options = options
             this.value = options[0].value
+            this.onStoreChanged(this.value)
         },
         onStoreChanged(newStore) {
             this.$emit("storeChanged", newStore)
         }
+        
     }
 }
 </script>

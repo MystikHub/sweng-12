@@ -10,25 +10,47 @@
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <VoucherPurchaseCounts />
       </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <StampTotalTrend ref="stampTotalTrend" />
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <PercentHaveRedeemed />
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <ActualTotalsPie ref="actualTotalsPieChart"/>
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <MostPopularVoucher />
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import ActualTotalsPie from './ActualTotalsPie'
+import MostPopularVoucher from './MostPopularVoucher'
 import MultiStoreCustomers from './MultiStoreCustomers'
+import PercentHaveRedeemed from './PercentHaveRedeemed'
 import RetentionRate from './RetentionRate'
+import StampTotalTrend from './StampTotalTrend'
 import VoucherPurchaseCounts from './VoucherPurchaseCounts'
 
 export default {
   name: 'ChartGrid',
   components: {
+    ActualTotalsPie,
+    MostPopularVoucher,
     MultiStoreCustomers,
+    PercentHaveRedeemed,
     RetentionRate,
-    VoucherPurchaseCounts
+    StampTotalTrend,
+    VoucherPurchaseCounts,
   },
   methods: {
     updateCharts(newStore) {
       this.$refs.multiStoreChart.getData(newStore)
+      this.$refs.actualTotalsPieChart.getData(newStore)
+      this.$refs.stampTotalTrend.getData(newStore)
     }
   }
 }
