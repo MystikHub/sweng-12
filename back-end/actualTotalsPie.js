@@ -1,5 +1,6 @@
 var url = require("url"); //Split up the web address
 const fs = require("fs"); //File system
+const { text } = require("express");
 
 function countKeysPerLevel(storage, level, obj, store) {
   var keys = Object.keys(obj);
@@ -21,51 +22,41 @@ async function actualTotalsPie(req, res) {
   let findRawRedemptionsJson = fs.readFileSync("./backendData/rawredemptions.json");
   let rawredemptionsJson = JSON.parse(findRawRedemptionsJson);
   test = Object.keys(rawpurchasesJson);
-  let count ='0'
-  if(count < 1){
-    var oneTotal = {};
-    var oneRedeemed = {};
-    var twoTotal = {};
-    var twoRedeemed = {};
-    var threeTotal = {};
-    var threeRedeemed = {};
-  countKeysPerLevel(oneTotal, 0, rawpurchasesJson, 0);
-  countKeysPerLevel(oneRedeemed, 0, rawredemptionsJson, 0);
+  var testTotal = [];
+  var testRedeemed = [];
+  var sumTotal = [];
+  var sumRedeemed = [];
 
-  countKeysPerLevel(twoTotal, 0, rawpurchasesJson, 1);
-  countKeysPerLevel(twoRedeemed, 0, rawredemptionsJson, 1);
-
-  countKeysPerLevel(threeTotal, 0, rawpurchasesJson, 2);
-  countKeysPerLevel(threeRedeemed, 0, rawredemptionsJson, 2);
-  count = count + 1
+  for (var i = 0; i < test.length; i++) {
+    var testTotal = [];
+    var testRedeemed = [];
+    countKeysPerLevel(testTotal, 0, rawpurchasesJson, i);
+    countKeysPerLevel(testRedeemed, 0, rawredemptionsJson, i);
+    sumTotal.push(testTotal[1]);
+    sumRedeemed.push(testRedeemed[1]);
   }
-  var one = (oneTotal[1] / oneRedeemed[1]) * 100;
-  var two = (twoTotal[1] / twoRedeemed[1]) * 100;
-  var three = (threeTotal[1] / threeRedeemed[1]) * 100;
+
+  let numberPart = test.map((item) => item.split("-")[1]);
+  let uniq = [...new Set(numberPart)];
+
   if (req.query.scheme === undefined) {
     res.sendStatus(400);
-  } else if (req.query.scheme === "001") {
-    res.send({
-      label1: "Total users",
-      value1: oneTotal[1],
-      label2: "Users have redeemed",
-      value2: oneRedeemed[1],
-    });
-  } else if (req.query.scheme === "002") {
-    res.send({
-      label1: "Total users",
-      value1: twoTotal[1],
-      label2: "Users have redeemed",
-      value2: twoRedeemed[1],
-    });
-  } else if (req.query.scheme === "SW-002") {
-    res.send({
-      label1: "Total users",
-      value1: threeTotal[1],
-      label2: "Users have redeemed",
-      value2: threeRedeemed[1],
-    });
+  } else {
+    for (var i = 0; i < test.length; i++) {
+      if (req.query.scheme === uniq[i]) {
+        console.log(uniq[i]);
+        thing = i;
+        console.log(thing);
+        res.send({
+          label1: "Total users",
+          value1: sumTotal[i],
+          label2: "Users have redeemed",
+          value2: sumRedeemed[i],
+          sumTotal,
+          sumRedeemed,
+        });
+      }
+    }
   }
 }
-
 module.exports = actualTotalsPie;
