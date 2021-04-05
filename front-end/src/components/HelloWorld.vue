@@ -33,6 +33,7 @@
     <StampTotalTrend />
     <PercentHaveRedeemed />
     <RetentionRate />
+    <ActualTotalsPie />
   </div>
 </template>
 
@@ -41,6 +42,7 @@ import MultiStoreCustomers from './MultiStoreCustomers'
 import StampTotalTrend from './StampTotalTrend'
 import PercentHaveRedeemed from './PercentHaveRedeemed'
 import RetentionRate from './RetentionRate'
+import ActualTotalsPie from './ActualTotalsPie'
 
 export default {
   name: 'HelloWorld',
@@ -51,7 +53,8 @@ export default {
     MultiStoreCustomers,
     StampTotalTrend,
     PercentHaveRedeemed,
-    RetentionRate
+    RetentionRate,
+    ActualTotalsPie
   }
 }
 </script>

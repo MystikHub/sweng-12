@@ -1,3 +1,18 @@
+<template>
+  <div id="app">
+    <div id="chart-container">
+      <fusioncharts
+      :type="type"
+      :width="width"
+      :height="height"
+      :dataformat="dataFormat"
+      :dataSource="dataSource"
+      >
+      </fusioncharts>
+    </div>
+  </div>
+</template>
+
 <script>
 import Vue from 'vue';
 import VueFusionCharts from 'vue-fusioncharts';
@@ -34,16 +49,16 @@ export default {
     methods: {
         async getData() {
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/total_redeemed_total_unredeemed?scheme=${scheme}`)
+            const formattedData = await axios.get(`${api_server}/actual_totals_pie?scheme=${scheme}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
                     console.log(response.data)
                          const dataStore = {
                                 "chart": {
-                                "caption": "Percentage total vouchers and total unredeemed",
+                                "caption": "Percentage of users who have also claimed reward",
                                 "subCaption": "All time",
-                                "numberPrefix": "Vouchers: ",
+                                "numberPrefix": "Users: ",
                                 "showPercentInTooltip": "0",
                                 "decimals": "1",
                                 "useDataPlotColorForLabels": "1",
@@ -72,17 +87,3 @@ export default {
 }
 </script>
 
-<template>
-  <div id="app">
-    <div id="chart-container">
-      <fusioncharts
-      :type="type"
-      :width="width"
-      :height="height"
-      :dataformat="dataFormat"
-      :dataSource="dataSource"
-      >
-      </fusioncharts>
-    </div>
-  </div>
-</template>
