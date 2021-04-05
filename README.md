@@ -1,5 +1,20 @@
 # Software Engineering Project - Group 12
 
+## About the project
+
+We've been tasked by Squid Loyalty to come up with some new charts for their business dashboard. This repo hosts the front end and back ends for the new charts we're adding to their existing dashboard.
+
+## Working on features and charts using issues and branches
+
+Whenever we start on a new feature or chart, go through these steps:
+
+*  For charts:
+    *  Create an issue called "API Specification: \<chart name\>
+    *  After you and your pair have decided on a format to serve and receive the data between the front and back end, make an issue for the front end "Chart: \<chart name\>" and an issue for the back end route "Back end route: \<chart name\>"
+    *  Finally, you can start working on both sides of the chart on different branches. Branches for the front end of charts should be called `<issue number>-chart-<chart name>` and similarly for the back end `<issue number>-backend-<chart name>`
+*  For other features:
+    *  Create an issue called after your feature, then after the issue has been finalized (and assuming some code needs to be written to resolve it) start working on the feature on a new branch called `<issue number>-<feature name>`
+
 ## Github instructions
 
 ### For Windows

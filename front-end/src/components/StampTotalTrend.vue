@@ -7,6 +7,7 @@ import Column2D from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import Charts from "fusioncharts/fusioncharts.charts";
 import { FCComponent } from "vue-fusioncharts";
+import constants from "../constants";
 
 Charts(FusionCharts);
 Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme, FCComponent);
@@ -22,8 +23,8 @@ export default {
     return {
       type: "mscolumn2d",
       renderAt: "chart-container",
-      width: "550",
-      height: "550",
+      width: constants.chart_width,
+      height: constants.chart_height,
       dataFormat: "json",
       dataSource: dataStore
     }
@@ -44,6 +45,7 @@ export default {
                     const dataStore = {
                         chart: {
                             caption: "Total Stamps Collected",
+                            paletteColors: constants.palette,
                             subcaption: "PAV",
                             xaxisname: "Years",
                             yaxisname: "Total number of stamps",
@@ -107,7 +109,7 @@ export default {
 //STEP 4: Render the chart
 <template>
   <div id="app">
-    <div id="chart-container">
+    <el-card id="chart-container">
       <fusioncharts
       :type="type"
       :width="width"
@@ -116,6 +118,6 @@ export default {
       :dataSource="dataSource"
       >
       </fusioncharts>
-    </div>
+    </el-card>
   </div>
 </template>

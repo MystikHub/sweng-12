@@ -5,6 +5,9 @@ const multipleStore = require("./multiStore");
 const stampTotalTrend = require("./stampTotalTrend");
 const totalRedeemedTotalUnredeemed = require("./totalRedeemedTotalUnredeemed");
 const actualTotalsPie = require("./actualTotalsPie");
+const selector = require("./selector");
+const retention = require("./retention");
+const vouncherCount = require('./voucherCount');
 
 const port = 3000;
 
@@ -15,6 +18,11 @@ function enableLocalCors(res) {
 app.get('/', (req, res) => {
   enableLocalCors(res)
   res.send('Hello World!')
+})
+
+app.get('/all_stores', (req, res) => {
+  enableLocalCors(res)
+  selector(req,res)
 })
 
 app.get('/multi_store_customers', (req, res) => {
@@ -35,6 +43,16 @@ app.get('/total_redeemed_total_unredeemed', (req, res) => {
 app.get('/actual_totals_pie', (req, res) => {
   enableLocalCors(res)
   actualTotalsPie(req, res)
+})
+
+app.get('/retention_rate', (req, res) => {
+  enableLocalCors(res)
+  retention(req, res)
+})
+
+app.get('/voucher_purchase_counts', (req, res) => {
+  enableLocalCors(res)
+  vouncherCount(req, res)
 })
 
 app.listen(port, () => {

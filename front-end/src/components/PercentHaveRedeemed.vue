@@ -3,6 +3,7 @@ import Vue from 'vue';
 import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
+import constants from "../constants"
 
 //import the theme
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
@@ -21,8 +22,8 @@ export default {
   data() {
         return {
             type: 'pie2d',
-            width: '100%',
-            height: '400',
+            width: constants.chart_width,
+            height: constants.chart_height,
             dataFormat: 'json',
             renderAt: "chart-container",
             dataSource: dataStore,
@@ -42,6 +43,7 @@ export default {
                          const dataStore = {
                                 "chart": {
                                 "caption": "Percentage total vouchers and total unredeemed",
+                                paletteColors: constants.palette,
                                 "subCaption": "All time",
                                 "numberPrefix": "Vouchers: ",
                                 "showPercentInTooltip": "0",
@@ -74,7 +76,7 @@ export default {
 
 <template>
   <div id="app">
-    <div id="chart-container">
+    <el-card id="chart-container">
       <fusioncharts
       :type="type"
       :width="width"
@@ -83,6 +85,6 @@ export default {
       :dataSource="dataSource"
       >
       </fusioncharts>
-    </div>
+    </el-card>
   </div>
 </template>
