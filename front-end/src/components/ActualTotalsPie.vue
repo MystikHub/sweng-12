@@ -27,9 +27,7 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
 Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
-let newStore="";
-newStore;
+let newStore ="";
 // Copy datasource from 'Data' tab
 const dataStore = {}
 
@@ -51,7 +49,7 @@ export default {
     methods: {
         async getData( newStore) {
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/actual_totals_pie?scheme=${newStore}`)
+            const formattedData = await axios.get(`${constants.api_server}/actual_totals_pie?scheme=${newStore}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")

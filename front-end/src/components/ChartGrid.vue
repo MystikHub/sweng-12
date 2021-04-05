@@ -27,24 +27,24 @@
 </template>
 
 <script>
-import MultiStoreCustomers from './MultiStoreCustomers'
-import RetentionRate from './RetentionRate'
-import VoucherPurchaseCounts from './VoucherPurchaseCounts'
 import ActualTotalsPie from './ActualTotalsPie'
-import PercentHaveRedeemed from './PercentHaveRedeemed'
-import StampTotalTrend from './StampTotalTrend'
 import MostPopularVoucher from './MostPopularVoucher'
+import MultiStoreCustomers from './MultiStoreCustomers'
+import PercentHaveRedeemed from './PercentHaveRedeemed'
+import RetentionRate from './RetentionRate'
+import StampTotalTrend from './StampTotalTrend'
+import VoucherPurchaseCounts from './VoucherPurchaseCounts'
 
 export default {
   name: 'ChartGrid',
   components: {
-    MultiStoreCustomers,
-    RetentionRate,
-    VoucherPurchaseCounts,
     ActualTotalsPie,
+    MostPopularVoucher,
+    MultiStoreCustomers,
     PercentHaveRedeemed,
+    RetentionRate,
     StampTotalTrend,
-    MostPopularVoucher
+    VoucherPurchaseCounts,
   },
   methods: {
     updateCharts(newStore) {

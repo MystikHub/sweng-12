@@ -26,8 +26,7 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
 Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
-let scheme = '002'
+let scheme = ''
 // Copy datasource from 'Data' tab
 const dataStore = {}
 
@@ -49,7 +48,7 @@ export default {
     methods: {
         async getData() {
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/most_popular_scheme?scheme=${scheme}`)
+            const formattedData = await axios.get(`${constants.api_server}/most_popular_scheme?scheme=${scheme}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
