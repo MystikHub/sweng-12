@@ -40,7 +40,6 @@ app.get('/actual_totals_pie', (req, res) => {
 
 app.get('/most_popular_scheme', (req, res) => {
   enableLocalCors(res)
-  res.send('Hello test')
   mostPopularVoucherSize(req, res)
 })
 

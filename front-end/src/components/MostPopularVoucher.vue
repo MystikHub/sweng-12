@@ -58,7 +58,7 @@ export default {
                                 "chart": {
                                 "caption": "Most Popular Voucher Size",
                                 "subCaption": "All time",
-                                "numberPrefix": "$",
+                                "numberPrefix": "Stamps: ",
                                 "showPercentInTooltip": "0",
                                 "decimals": "1",
                                 "useDataPlotColorForLabels": "1",
@@ -100,6 +100,4 @@ export default {
 
 </script>
 
-<style>
 
-</style>
