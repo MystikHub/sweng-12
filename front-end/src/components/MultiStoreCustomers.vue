@@ -1,5 +1,5 @@
 <template>
-    <div id='multi-store-customers-chart'>
+    <el-card id='multi-store-customers-chart' v-loading="loading">
         <fusioncharts
         :type="type"
         :width="width"
@@ -8,7 +8,7 @@
         :dataSource="dataSource"
         >
         </fusioncharts>
-    </div>
+    </el-card>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ import constants from '../constants'
 Vue.use(VueFusionCharts, FusionCharts, Pie2D, FusionTheme);
 
 const axios = require('axios').default;
-let store_name = '001'
+let store = ''
 let chartData = []
 
 export default {
@@ -39,22 +39,24 @@ export default {
             dataformat: "json",
             dataSource: {
                 "chart": {
+                    paletteColors: constants.palette,
                     caption: "Percentage of customers of this store that have also visited another store",
                     showPercentInTooltip: "1",
                     theme: "fusion"
                 },
                 "data": chartData
-            }
+            },
+            loading: true
         }
     },
     mounted() {
-        this.getData()
+        this.getData(store)
     },
     methods: {
-        async getData() {
-
+        async getData(store) {
+            console.log('Getting data with selected store = ' + this.selectedStore)
             // Get the chart data
-            const formattedData = await axios.get(`${constants.api_server}/multi_store_customers?store=${store_name}`)
+            const formattedData = await axios.get(`${constants.api_server}/multi_store_customers?store=${store}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
@@ -77,7 +79,8 @@ export default {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-            this.dataSource.data = formattedData;
+            this.dataSource.data = formattedData
+            this.loading = false
         }
     }
 }

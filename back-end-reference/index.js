@@ -20,7 +20,29 @@ app.get('/multi_store_customers', (req, res) => {
     else if(req.query.store === "001")
         res.send({
             "multi_store_customers": 10,    // Customers that visited this store, as well as another store
-            "single_store_customers":  20   // Customers that only visited this store
+            "single_store_customers":  20,   // Customers that only visited this store
+        })
+    else
+        res.sendStatus(400)
+}),
+
+// Visit http://localhost:3000/stamp_total_Trend?scheme=002 in your browser to test this
+app.get('/stamp_total_trend', (req, res) => {
+    enableLocalCors(res)
+
+    if(req.query.scheme === undefined)
+        res.sendStatus(400)
+    else if(req.query.scheme === "002")
+        res.send({
+            "label1":'PAV-001',
+            "label2":'PAV-002',
+            "seriesname1":'PAV',
+            "value1":16616,
+            "value2":2670,
+            "seriesname2":'PAVSW',
+            "value6":0,
+            "value7":195,
+
         })
     else
         res.sendStatus(400)
