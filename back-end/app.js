@@ -8,6 +8,7 @@ const actualTotalsPie = require("./actualTotalsPie");
 const selector = require("./selector");
 const retention = require("./retention");
 const vouncherCount = require('./voucherCount');
+const mostPopularVoucherSize = require("./mostPopularVoucherSize");
 
 const port = 3000;
 
@@ -53,6 +54,10 @@ app.get('/retention_rate', (req, res) => {
 app.get('/voucher_purchase_counts', (req, res) => {
   enableLocalCors(res)
   vouncherCount(req, res)
+})
+app.get('/most_popular_scheme', (req, res) => {
+  enableLocalCors(res)
+  mostPopularVoucherSize(req, res)
 })
 
 app.listen(port, () => {

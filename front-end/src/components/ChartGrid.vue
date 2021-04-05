@@ -19,6 +19,9 @@
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <ActualTotalsPie ref="actualTotalsPieChart"/>
       </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <MostPopularVoucher />
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -30,6 +33,7 @@ import VoucherPurchaseCounts from './VoucherPurchaseCounts'
 import ActualTotalsPie from './ActualTotalsPie'
 import PercentHaveRedeemed from './PercentHaveRedeemed'
 import StampTotalTrend from './StampTotalTrend'
+import MostPopularVoucher from './MostPopularVoucher'
 
 export default {
   name: 'ChartGrid',
@@ -39,7 +43,8 @@ export default {
     VoucherPurchaseCounts,
     ActualTotalsPie,
     PercentHaveRedeemed,
-    StampTotalTrend
+    StampTotalTrend,
+    MostPopularVoucher
   },
   methods: {
     updateCharts(newStore) {
