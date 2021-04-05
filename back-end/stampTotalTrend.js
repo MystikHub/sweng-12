@@ -19,10 +19,9 @@ function iterationObject(obj){
 }
 
 async function stampTotalTrend(req, res) {
-    if(req.query.scheme === undefined){
+    if(req.query.store === undefined){
         res.sendStatus(400)
-    }
-    else if(req.query.scheme === "002"){
+    } else {
         let findTotalsJson = fs.readFileSync('./backendData/totals.json');
         let totalsJson = JSON.parse(findTotalsJson);
         let findRawRedemptionsJson = fs.readFileSync('./backendData/rawredemptions.json');
@@ -63,9 +62,6 @@ async function stampTotalTrend(req, res) {
             "value4" : stampy[2]
         }))
     }
-    else{
-        res.sendStatus(400)
-    }   
 }
 
 module.exports = stampTotalTrend
