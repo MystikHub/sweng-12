@@ -1,11 +1,6 @@
 var url = require("url"); //Split up the web address
 const fs = require("fs"); //File system
-var oneTotal = {};
-var oneRedeemed = {};
-var twoTotal = {};
-var twoRedeemed = {};
-var threeTotal = {};
-var threeRedeemed = {};
+
 function countKeysPerLevel(storage, level, obj, store) {
   var keys = Object.keys(obj);
   var count = keys.length;
@@ -23,12 +18,17 @@ function countKeysPerLevel(storage, level, obj, store) {
 async function actualTotalsPie(req, res) {
   let findRawPurchasesJson = fs.readFileSync("./backendData/rawpurchases.json");
   let rawpurchasesJson = JSON.parse(findRawPurchasesJson);
-  let findRawRedemptionsJson = fs.readFileSync(
-    "./backendData/rawredemptions.json"
-  );
+  let findRawRedemptionsJson = fs.readFileSync("./backendData/rawredemptions.json");
   let rawredemptionsJson = JSON.parse(findRawRedemptionsJson);
   test = Object.keys(rawpurchasesJson);
-
+  let count ='0'
+  if(count < 1){
+    var oneTotal = {};
+    var oneRedeemed = {};
+    var twoTotal = {};
+    var twoRedeemed = {};
+    var threeTotal = {};
+    var threeRedeemed = {};
   countKeysPerLevel(oneTotal, 0, rawpurchasesJson, 0);
   countKeysPerLevel(oneRedeemed, 0, rawredemptionsJson, 0);
 
@@ -37,20 +37,21 @@ async function actualTotalsPie(req, res) {
 
   countKeysPerLevel(threeTotal, 0, rawpurchasesJson, 2);
   countKeysPerLevel(threeRedeemed, 0, rawredemptionsJson, 2);
-
+  count = count + 1
+  }
   var one = (oneTotal[1] / oneRedeemed[1]) * 100;
   var two = (twoTotal[1] / twoRedeemed[1]) * 100;
   var three = (threeTotal[1] / threeRedeemed[1]) * 100;
   if (req.query.scheme === undefined) {
     res.sendStatus(400);
-  } else if (req.query.scheme === "002") {
+  } else if (req.query.scheme === "001") {
     res.send({
       label1: "Total users",
       value1: oneTotal[1],
       label2: "Users have redeemed",
       value2: oneRedeemed[1],
     });
-  } else if (req.query.scheme === "001") {
+  } else if (req.query.scheme === "002") {
     res.send({
       label1: "Total users",
       value1: twoTotal[1],

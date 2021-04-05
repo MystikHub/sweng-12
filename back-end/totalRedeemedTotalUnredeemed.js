@@ -45,7 +45,13 @@ async function totalRedeemedTotalUnredeemed(req, res) {
   let findtotalsJson = fs.readFileSync("./backendData/totals.json");
   let totalsJson = JSON.parse(findtotalsJson);
   var allStamps = Object.entries(totalsJson)
-
+  
+  var oneTotal = {};
+  var oneRedeemed = {};
+  var twoTotal = {};
+  var twoRedeemed = {};
+  var threeTotal = {};
+  var threeRedeemed = {};
   countKeysPerLevel(oneTotal, 0, rawpurchasesJson, 0);
   countKeysPerLevel(oneRedeemed, 0, rawredemptionsJson, 0);
 
