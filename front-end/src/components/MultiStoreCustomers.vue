@@ -23,7 +23,7 @@ import constants from '../constants'
 Vue.use(VueFusionCharts, FusionCharts, Pie2D, FusionTheme);
 
 const axios = require('axios').default;
-let store = '001'
+let store = ''
 let chartData = []
 
 export default {
