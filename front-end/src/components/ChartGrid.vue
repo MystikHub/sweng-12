@@ -60,7 +60,6 @@ export default {
     RetentionRate,
     StampTotalTrend,
     VoucherPurchaseCounts,
-
   },
   methods: {
     updateCharts(newStore) {
