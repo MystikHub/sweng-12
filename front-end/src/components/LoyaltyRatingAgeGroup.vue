@@ -64,7 +64,7 @@ export default {
 
                    let chartData = []
                       var i;
-                      for (i = 0; i < response.data.age_groups; i++) {
+                      for (i = 0; i < response.data.age_groups.length; i++) {
                          chartData.push (
                              {      label: response.data.age_groups[i],
                                     value: response.data.average_days_between_stamps[i],
