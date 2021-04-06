@@ -47,6 +47,16 @@ app.get('/customer_growth', (req, res) => {
     })
 })
 
+// Visit http://localhost:3000/loyalty_rating_age_group in your browser to test this
+app.get('/loyalty_rating_age_group', (req, res) => {
+    enableLocalCors(res)
+
+    res.send({
+        "average_days_between_stamps":[16,26, 33, 30, 14, 6, 1],
+        "age_groups":  ["Under 19","19 to 24","24 to 30","30 to 40","40 to 50","50 to 60","Over 60"]
+    })
+})
+
 app.listen(port, () => {
     console.log(`Back end api reference listening at http://localhost:${port}`)
     console.log(`Restart node.js after making changes`)
