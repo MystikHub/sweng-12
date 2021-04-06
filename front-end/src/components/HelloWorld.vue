@@ -32,6 +32,7 @@
     <RetentionRate />
     <CustomerGrowth/>
     <LoyaltyRatingAgeGroup/>
+    <LoyaltyRatingsGender/>
   </div>
 </template>
 
@@ -40,6 +41,8 @@ import MultiStoreCustomers from './MultiStoreCustomers'
 import RetentionRate from './RetentionRate'
 import CustomerGrowth from './CustomerGrowth'
 import LoyaltyRatingAgeGroup from './LoyaltyRatingAgeGroup'
+import LoyaltyRatingsGender from  './LoyaltyRatingsGender'
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -49,11 +52,12 @@ export default {
     MultiStoreCustomers,
     RetentionRate,
     CustomerGrowth,
-    LoyaltyRatingAgeGroup
+    LoyaltyRatingAgeGroup,
+    LoyaltyRatingsGender
   }
 }
 </script>
-    LoyaltyRatingAgeGroup
+    
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
