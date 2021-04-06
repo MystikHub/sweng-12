@@ -24,7 +24,8 @@ export default {
       width: constants.chart_width,
       height: constants.chart_height,
       dataFormat: "json",
-      dataSource: dataStore
+      dataSource: dataStore,
+      loading: true
     }
   },
     mounted() {
@@ -32,6 +33,7 @@ export default {
     },
     methods: {
         async getData(newStore) {
+            this.loading = true
 
             // Get the chart data
             const formattedData = await axios.get(`${constants.api_server}/stamp_total_Trend?store=${newStore}`)
@@ -99,6 +101,7 @@ export default {
                     console.log(error)
                 });
             this.dataSource = formattedData;
+            this.loading = false
         }
     }
 }
@@ -106,7 +109,7 @@ export default {
 
 //STEP 4: Render the chart
 <template>
-  <el-card id="stamp-total-trend-chart">
+  <el-card id="stamp-total-trend-chart" v-loading="loading">
       <fusioncharts
       :type="type"
       :width="width"

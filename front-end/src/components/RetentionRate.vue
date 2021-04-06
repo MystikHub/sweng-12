@@ -54,6 +54,7 @@ export default {
     },
     methods: {
         async getData() {
+            this.loading = true
 
             // Get the chart data
             const formattedData = await axios.get(`${constants.api_server}/retention_rate`)

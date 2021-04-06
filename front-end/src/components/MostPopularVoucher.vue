@@ -1,6 +1,6 @@
 <template>
     <div id="popularVoucher">
-    <el-card id="chart-container">
+    <el-card id="chart-container" v-loading="loading">
       <fusioncharts
       :type="type"
       :width="width"
@@ -40,6 +40,7 @@ export default {
             dataFormat: 'json',
             renderAt: "chart-container",
             dataSource: dataStore,
+            loading: true
         }
     },
     mounted() {
@@ -47,6 +48,7 @@ export default {
     },
     methods: {
         async getData() {
+            this.loading = true
             // Get the chart data
             const formattedData = await axios.get(`${constants.api_server}/most_popular_scheme?scheme=${scheme}`)
                 .then(function (response) {
@@ -93,7 +95,8 @@ export default {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-        this.dataSource = formattedData;
+            this.dataSource = formattedData;
+            this.loading = false
         },
     }
 }

@@ -53,6 +53,7 @@ export default {
     },
     methods: {
         async getData() {
+            this.loading = true
             // Get the chart data
             const formattedData = await axios.get(`${constants.api_server}/voucher_purchase_counts`)
                 .then(function (response) {

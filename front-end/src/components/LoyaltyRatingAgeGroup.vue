@@ -1,5 +1,5 @@
 <template>
-    <div id='Loyalty_Ratings_By_Age_Groups'>
+    <el-card id='Loyalty_Ratings_By_Age_Groups' v-loading="loading">
         <fusioncharts
         :type="type"
         :width="width"
@@ -8,7 +8,7 @@
         :dataSource="dataSource"
         >
         </fusioncharts>
-    </div>
+    </el-card>
 </template>
 
 <script>
@@ -47,7 +47,8 @@ export default {
                         showPercentInTooltip: "1",
                },
                 "data": chartData
-            }
+            },
+            loading: true
         }
     },
     mounted() {
@@ -55,6 +56,7 @@ export default {
     },
     methods: {
         async getData() {
+            this.loading = true
 
             // Get the chart data
             const formattedData = await axios.get(`${constants.api_server}/loyalty_rating_age_group`)
@@ -78,6 +80,7 @@ export default {
                     console.log(error)
                 });
             this.dataSource.data = formattedData;
+            this.loading = false
         }
     }
 }
