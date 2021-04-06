@@ -1,5 +1,5 @@
 <template>
-    <el-card id='retention-rate-customers-chart' v-loading="loading">
+    <el-card id='voucher-purchase-counts-chart' v-loading="loading">
         <fusioncharts
         :type="type"
         :width="width"
@@ -26,21 +26,20 @@ const axios = require('axios').default;
 let chartData = []
 
 export default {
-    name: "RetentionRate",
+    name: "VoucherPurchaseCounts",
     data() {
         return {
             type: "column2d",
             showPercentInTooltip: 0,
             theme: "fusion",
-            renderAt: "retention-rate-customers-chart",
+            renderAt: "voucher-purchase-counts-chart",
             width: constants.chart_width,
             height: constants.chart_height,
             dataformat: "json",
             dataSource: {
                 "chart": {
-                    caption: "Customer Retention Rate",
+                    caption: "Total vouchers purchased",
                     paletteColors: constants.palette,
-                    subcaption: "Customers from 60-30 days ago who also redeemed a stamp in the past 30 days",
                     showPercentInTooltip: "1",
                     theme: "fusion"
                 },
@@ -54,22 +53,18 @@ export default {
     },
     methods: {
         async getData() {
-
             // Get the chart data
-            const formattedData = await axios.get(`${constants.api_server}/retention_rate`)
+            const formattedData = await axios.get(`${constants.api_server}/voucher_purchase_counts`)
                 .then(function (response) {
                     // Handle success
-                    console.log("Here's the response")
-                    console.log(response.data)
-
                     chartData = [
                         {
-                            label: "Loyal customers",
-                            value: response.data.loyal_customers
+                            label: "Vouchers purchased",
+                            value: response.data.vouchers
                         },
                         {
-                            label: "Other customers",
-                            value: response.data.not_loyal_customers
+                            label: "Voucher packages purchased",
+                            value: response.data.voucher_packages
                         }
                     ]
 
@@ -79,7 +74,7 @@ export default {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-            this.dataSource.data = formattedData
+            this.dataSource.data = formattedData;
             this.loading = false
         }
     }
