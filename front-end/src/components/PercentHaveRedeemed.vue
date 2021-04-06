@@ -26,6 +26,7 @@ export default {
             dataFormat: 'json',
             renderAt: "chart-container",
             dataSource: dataStore,
+            loading: true
         }
     },
     mounted() {
@@ -33,6 +34,7 @@ export default {
     },
     methods: {
         async getData() {
+            this.loading = true
             // Get the chart data
             const formattedData = await axios.get(`${constants.api_server}/total_redeemed_total_unredeemed?scheme=${scheme}`)
                 .then(function (response) {
@@ -67,7 +69,8 @@ export default {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-        this.dataSource = formattedData;
+            this.dataSource = formattedData;
+            this.loading = false
         },
     }
 }
@@ -75,7 +78,7 @@ export default {
 
 <template>
   <div id="app">
-    <el-card id="chart-container">
+    <el-card id="chart-container" v-loading="loading">
       <fusioncharts
       :type="type"
       :width="width"

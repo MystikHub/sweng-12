@@ -1,5 +1,5 @@
 <template>
-    <el-card id='voucher-purchase-counts-chart' v-loading="loading">
+    <el-card id='Customer-Growth-chart' v-loading="loading">
         <fusioncharts
         :type="type"
         :width="width"
@@ -16,32 +16,35 @@
 import Vue from 'vue';
 import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
-import Column2D from 'fusioncharts/fusioncharts.charts';
+import line from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import constants from '../constants'
 
-Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
+Vue.use(VueFusionCharts, FusionCharts, line, FusionTheme);
 
 const axios = require('axios').default;
 let chartData = []
 
 export default {
-    name: "VoucherPurchaseCounts",
+    name: "CustomerGrowth",
     data() {
         return {
-            type: "column2d",
+            type: "line",
             showPercentInTooltip: 0,
             theme: "fusion",
-            renderAt: "voucher-purchase-counts-chart",
+            renderAt: "Customer-Growth-chart",
             width: constants.chart_width,
             height: constants.chart_height,
             dataformat: "json",
             dataSource: {
                 "chart": {
-                    caption: "Total vouchers purchased",
+                    theme: "fusion",
+                    caption: "Growth Of Customers",
                     paletteColors: constants.palette,
-                    showPercentInTooltip: "1",
-                    theme: "fusion"
+                    subCaption: "This Business Year",
+                    xAxisName: "Month",
+                    yAxisName: "No. of Customers",
+                    lineThickness: 2
                 },
                 "data": chartData
             },
@@ -54,23 +57,24 @@ export default {
     methods: {
         async getData() {
             this.loading = true
+
             // Get the chart data
-            const formattedData = await axios.get(`${constants.api_server}/voucher_purchase_counts`)
+            const formattedData = await axios.get(`${constants.api_server}/customer_growth`)
                 .then(function (response) {
                     // Handle success
-                    chartData = [
-                        {
-                            label: "Vouchers purchased",
-                            value: response.data.vouchers
-                        },
-                        {
-                            label: "Voucher packages purchased",
-                            value: response.data.voucher_packages
-                        }
-                    ]
+                    console.log("Here's the response")
+                    console.log(response.data)
 
-                    return chartData
-                })
+                   let chartData = []
+                      var i;
+                      for (i = 0; i < response.data.timescale_of_the_dates.length; i++) {
+                         chartData.push (
+                             {      label: response.data.timescale_of_the_dates[i],
+                                    value: response.data.customer_growth_over_time[i],
+                             })
+                         }
+                    return chartData 
+                }) 
                 .catch(function (error) {
                     console.log("Something went wrong!")
                     console.log(error)
