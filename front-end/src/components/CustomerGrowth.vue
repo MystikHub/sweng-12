@@ -18,11 +18,11 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import line from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import constants from '../constants'
 
 Vue.use(VueFusionCharts, FusionCharts, line, FusionTheme);
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
 let chartData = []
 
 export default {
@@ -33,16 +33,18 @@ export default {
             showPercentInTooltip: 0,
             theme: "fusion",
             renderAt: "Customer-Growth-chart",
-            width: 550,
-            height: 550,
+            width: constants.chart_width,
+            height: constants.chart_height,
             dataformat: "json",
             dataSource: {
-                "chart": { "theme": "fusion",
-                        "caption": "Growth Of Customers",
-                        "subCaption": "This Business Year",
-                        "xAxisName": "Month",
-                        "yAxisName": "No. of Customers",
-                        "lineThickness": "2"
+                "chart": {
+                    theme: "fusion",
+                    caption: "Growth Of Customers",
+                    paletteColors: constants.palette,
+                    subCaption: "This Business Year",
+                    xAxisName: "Month",
+                    yAxisName: "No. of Customers",
+                    lineThickness: 2
                 },
                 "data": chartData
             }
@@ -55,7 +57,7 @@ export default {
         async getData() {
 
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/customer_growth`)
+            const formattedData = await axios.get(`${constants.api_server}/customer_growth`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")

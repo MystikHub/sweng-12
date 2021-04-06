@@ -18,11 +18,11 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Column2D from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import constants from '../constants'
 
 Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme);
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
 let chartData = []
 
 export default {
@@ -33,12 +33,13 @@ export default {
             showPercentInTooltip: 0,
             theme: "fusion",
             renderAt: "Loyalty-Ratings-Based-On-Gender",
-            width: 550,
-            height: 550,
+            width: constants.chart_width,
+            height: constants.chart_height,
             dataformat: "json",
             dataSource: {
                 "chart": { 
                         caption: "Loyalty Ratings",
+                        paletteColors: constants.palette,
                         subCaption: "Based On Gender",
                         xAxisName: "Gender",
                         yAxisName: "Days Between Stamps",
@@ -56,7 +57,7 @@ export default {
         async getData() {
 
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/loyalty_rating_gender`)
+            const formattedData = await axios.get(`${constants.api_server}/loyalty_rating_gender`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
