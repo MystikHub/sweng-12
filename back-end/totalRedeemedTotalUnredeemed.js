@@ -4,10 +4,10 @@ let stampss=[];
 let unused=[];
 
 async function totalRedeemedTotalUnredeemed(req, res) {
-    if(req.query.scheme === undefined){
+    if(req.query.store === undefined){
         res.sendStatus(400)
     }
-    else if(req.query.scheme === "002"){
+    else if(req.query.store === "002"){
         let findTotalsJson = fs.readFileSync('./backendData/totals.json');
         let totalsJson = JSON.parse(findTotalsJson);
 

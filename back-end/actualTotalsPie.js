@@ -5,7 +5,7 @@ async function actualTotalsPie(req, res) {
     if(req.query.scheme === undefined){
         res.sendStatus(400)
     }
-    else if(req.query.scheme === "002"){
+    else if(req.query.store === "002"){
         let findRawPurchasesJson = fs.readFileSync('./rawpurchases.json');
         let rawpurchasesJson = JSON.parse(findRawPurchasesJson);
         var test =[]
