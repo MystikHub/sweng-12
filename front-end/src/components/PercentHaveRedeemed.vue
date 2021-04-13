@@ -13,7 +13,7 @@ Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
 
 const axios = require('axios').default;
 let api_server = 'http://localhost:3000';
-let scheme = '002'
+let store = '002'
 // Copy datasource from 'Data' tab
 const dataStore = {}
 
@@ -35,7 +35,7 @@ export default {
     methods: {
         async getData() {
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/total_redeemed_total_unredeemed?scheme=${scheme}`)
+            const formattedData = await axios.get(`${api_server}/total_redeemed_total_unredeemed?store=${store}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")

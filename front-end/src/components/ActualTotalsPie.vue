@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <el-card id="chart-container">
+    <el-card id="chart-container" v-loading="loading">
       <fusioncharts
       :type="type"
       :width="width"
@@ -30,6 +31,7 @@ const axios = require('axios').default;
 let api_server = 'http://localhost:3000';
 let newStore="";
 newStore;
+let newStore ="";
 // Copy datasource from 'Data' tab
 const dataStore = {}
 
@@ -43,6 +45,7 @@ export default {
             dataFormat: 'json',
             renderAt: "chart-container",
             dataSource: dataStore,
+            loading: true
         }
     },
     mounted() {
@@ -52,6 +55,9 @@ export default {
         async getData( newStore) {
             // Get the chart data
             const formattedData = await axios.get(`${api_server}/actual_totals_pie?scheme=${newStore}`)
+            this.loading = true
+            // Get the chart data
+            const formattedData = await axios.get(`${constants.api_server}/actual_totals_pie?store=${newStore}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
@@ -85,6 +91,8 @@ export default {
                     console.log(error)
                 });
         this.dataSource = formattedData;
+            this.dataSource = formattedData;
+            this.loading = false
         },
     }
 }
