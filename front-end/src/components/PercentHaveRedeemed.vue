@@ -4,19 +4,14 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import constants from "../constants"
-
 //import the theme
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
-
 // register VueFusionCharts component
 Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
-
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
-let store = '002'
+let scheme = ''
 // Copy datasource from 'Data' tab
 const dataStore = {}
-
 export default {
     name: 'app',
   data() {
@@ -27,6 +22,7 @@ export default {
             dataFormat: 'json',
             renderAt: "chart-container",
             dataSource: dataStore,
+            loading: true
         }
     },
     mounted() {
@@ -34,8 +30,9 @@ export default {
     },
     methods: {
         async getData() {
+            this.loading = true
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/total_redeemed_total_unredeemed?store=${store}`)
+            const formattedData = await axios.get(`${constants.api_server}/total_redeemed_total_unredeemed?scheme=${scheme}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
@@ -68,7 +65,8 @@ export default {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-        this.dataSource = formattedData;
+            this.dataSource = formattedData;
+            this.loading = false
         },
     }
 }
@@ -76,7 +74,7 @@ export default {
 
 <template>
   <div id="app">
-    <el-card id="chart-container">
+    <el-card id="chart-container" v-loading="loading">
       <fusioncharts
       :type="type"
       :width="width"
