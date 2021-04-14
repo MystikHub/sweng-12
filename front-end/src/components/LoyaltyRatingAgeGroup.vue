@@ -1,5 +1,5 @@
 <template>
-    <el-card id='voucher-purchase-counts-chart' v-loading="loading">
+    <el-card id='Loyalty_Ratings_By_Age_Groups' v-loading="loading">
         <fusioncharts
         :type="type"
         :width="width"
@@ -26,23 +26,26 @@ const axios = require('axios').default;
 let chartData = []
 
 export default {
-    name: "VoucherPurchaseCounts",
+    name: "Loyalty_Ratings",
     data() {
         return {
             type: "column2d",
             showPercentInTooltip: 0,
             theme: "fusion",
-            renderAt: "voucher-purchase-counts-chart",
+            renderAt: "Loyalty-Ratings-By-Age-Group-chart",
             width: constants.chart_width,
             height: constants.chart_height,
             dataformat: "json",
             dataSource: {
-                "chart": {
-                    caption: "Total vouchers purchased",
-                    paletteColors: constants.palette,
-                    showPercentInTooltip: "1",
-                    theme: "fusion"
-                },
+                "chart": { 
+                        caption: "Loyalty Ratings",
+                        paletteColors: constants.palette,
+                        subCaption: "Based On Age Groups",
+                        xAxisName: "Age Groups",
+                        yAxisName: "Days Between Stamps",
+                        theme: "fusion",
+                        showPercentInTooltip: "1",
+               },
                 "data": chartData
             },
             loading: true
@@ -54,23 +57,24 @@ export default {
     methods: {
         async getData() {
             this.loading = true
+
             // Get the chart data
-            const formattedData = await axios.get(`${constants.api_server}/voucher_purchase_counts`)
+            const formattedData = await axios.get(`${constants.api_server}/loyalty_rating_age_group`)
                 .then(function (response) {
                     // Handle success
-                    chartData = [
-                        {
-                            label: "Vouchers purchased",
-                            value: response.data.vouchers
-                        },
-                        {
-                            label: "Voucher packages purchased",
-                            value: response.data.voucher_packages
-                        }
-                    ]
+                    console.log("Here's the response")
+                    console.log(response.data)
 
-                    return chartData
-                })
+                   let chartData = []
+                      var i;
+                      for (i = 0; i < response.data.age_groups.length; i++) {
+                         chartData.push (
+                             {      label: response.data.age_groups[i],
+                                    value: response.data.average_days_between_stamps[i],
+                             })
+                         }
+                    return chartData 
+                }) 
                 .catch(function (error) {
                     console.log("Something went wrong!")
                     console.log(error)

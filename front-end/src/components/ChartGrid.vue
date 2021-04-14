@@ -22,12 +22,24 @@
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <MostPopularVoucher />
       </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <CustomerGrowth />
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <LoyaltyRatingAgeGroup />
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <LoyaltyRatingsGender />
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
 import ActualTotalsPie from './ActualTotalsPie'
+import CustomerGrowth from './CustomerGrowth'
+import LoyaltyRatingAgeGroup from './LoyaltyRatingAgeGroup'
+import LoyaltyRatingsGender from  './LoyaltyRatingsGender'
 import MostPopularVoucher from './MostPopularVoucher'
 import MultiStoreCustomers from './MultiStoreCustomers'
 import PercentHaveRedeemed from './PercentHaveRedeemed'
@@ -39,6 +51,9 @@ export default {
   name: 'ChartGrid',
   components: {
     ActualTotalsPie,
+    CustomerGrowth,
+    LoyaltyRatingAgeGroup,
+    LoyaltyRatingsGender,
     MostPopularVoucher,
     MultiStoreCustomers,
     PercentHaveRedeemed,
