@@ -11,7 +11,7 @@
         <VoucherPurchaseCounts />
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
-        <StampTotalTrend />
+        <StampTotalTrend ref = "stampTotalChart"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <PercentHaveRedeemed />
@@ -50,6 +50,7 @@ export default {
     updateCharts(newStore) {
       this.$refs.multiStoreChart.getData(newStore)
       this.$refs.actualTotalsPieChart.getData(newStore)
+       this.$refs.stampTotalChart.getData(newStore)
     }
   }
 }

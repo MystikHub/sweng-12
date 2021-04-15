@@ -13,9 +13,9 @@ Charts(FusionCharts);
 Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme, FCComponent);
 const axios = require('axios').default;
 let api_server = 'http://localhost:3000';
-let scheme = '002'
-const dataStore={}
 
+const dataStore={}
+let newStore = ""
 
 export default {
     name: 'app',
@@ -30,13 +30,13 @@ export default {
     }
   },
     mounted() {
-        this.getData()
+        this.getData(newStore)
     },
     methods: {
-        async getData() {
+        async getData(newStore) {
 
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/stamp_total_Trend?scheme=${scheme}`)
+            const formattedData = await axios.get(`${api_server}/stamp_total_Trend?scheme=${newStore}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
