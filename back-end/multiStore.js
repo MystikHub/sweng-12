@@ -8,27 +8,23 @@ async function multiStore (req, res) {
     
     fs.readFile("./backendData/rawpurchases.json", function(err, data) {
         data=JSON.parse(data)
-        let numData = {"multi_store_customers" :0,"single_store_customers" :0}
+        var multi,single
+        let numData = {multi,single}
         if (store) {
-            numData = f(data,store);
+           numData = f(data,store);
         } 
         if(store == "all") {
             let allShops=Object.keys(data)
-            allShops=allShops.map(value =>  value.split("-")[1])
+            allShops=allShops.map(value => value.split("-")[1])
             allShops=new Set(allShops);
-            let i=0;
             
-            for (const shop of allShops) {
+            for (let shop of allShops) {
                 let num = f(data,shop);
-                if (i === 0) {
-                    numData.multi_store_customers += num.multi_store_customers;
-                    i++;
-                }
-                numData.single_store_customers+=num.single_store_customers
+                numData.multi =  [...new Set([...numData.multi, ...num.multi])];
+                numData.single = [...new Set([...numData.single, ...num.single])];
             }
         }
-        res.send(numData)
- 
+        res.send({"multi_store_customers" :numData.multi.length,"single_store_customers" :numData.single.length})
     })
     function f(data,search) {
         let allShops=Object.keys(data)
@@ -59,7 +55,7 @@ async function multiStore (req, res) {
         var multi = [...set1].filter((val)=>set2.has(val)); 
         //console.log("multi: " + multi)
         var single = [...set1].filter((val)=>!set2.has(val));
-        return {"multi_store_customers" :multi.length,"single_store_customers" :single.length}
+        return{multi,single}
     }
 }
 
