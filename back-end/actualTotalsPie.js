@@ -19,7 +19,9 @@ function countKeysPerLevel(storage, level, obj, store) {
 async function actualTotalsPie(req, res) {
   let findRawPurchasesJson = fs.readFileSync("./backendData/rawpurchases.json");
   let rawpurchasesJson = JSON.parse(findRawPurchasesJson);
-  let findRawRedemptionsJson = fs.readFileSync("./backendData/rawredemptions.json");
+  let findRawRedemptionsJson = fs.readFileSync(
+    "./backendData/rawredemptions.json"
+  );
   let rawredemptionsJson = JSON.parse(findRawRedemptionsJson);
   test = Object.keys(rawpurchasesJson);
   var testTotal = [];
@@ -38,24 +40,42 @@ async function actualTotalsPie(req, res) {
 
   let numberPart = test.map((item) => item.split("-")[1]);
   let uniq = [...new Set(numberPart)];
-
+  var allTotals = 0;
+  var allRedeemed = 0;
+  for (var i = 0; i < sumTotal.length || i < sumRedeemed.length; i++) {
+    allTotals = allTotals + sumTotal[i];
+    allRedeemed = allRedeemed + sumRedeemed[i];
+  }
   if (req.query.scheme === undefined) {
     res.sendStatus(400);
-  } else {
-    for (var i = 0; i < test.length; i++) {
-      if (req.query.scheme === uniq[i]) {
-        console.log(uniq[i]);
-        thing = i;
-        console.log(thing);
+  }
+  for (var i = 0; i < test.length; i++) {
+    if (req.query.scheme === uniq[i] && req.query.scheme !== uniq[uniq.length]) {
+      console.log(uniq[i]);
+      thing = i;
+      console.log(thing);
+      res.send({
+        label1: "Total users",
+        value1: sumTotal[i],
+        label2: "Users have redeemed",
+        value2: sumRedeemed[i],
+        sumTotal,
+        sumRedeemed,
+      });
+    } else if(req.query.scheme === uniq[uniq.length]){
+      try {
         res.send({
           label1: "Total users",
-          value1: sumTotal[i],
+          value1: allTotals,
           label2: "Users have redeemed",
-          value2: sumRedeemed[i],
+          value2: allRedeemed,
           sumTotal,
           sumRedeemed,
         });
+      } catch (error) {
+        
       }
+     
     }
   }
 }
