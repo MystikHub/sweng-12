@@ -23,6 +23,9 @@
         <MostPopularVoucher />
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <AverageVoucherSize />
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <CustomerGrowth />
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
@@ -37,6 +40,7 @@
 
 <script>
 import ActualTotalsPie from './ActualTotalsPie'
+import AverageVoucherSize from './AverageVoucherSize'
 import CustomerGrowth from './CustomerGrowth'
 import LoyaltyRatingAgeGroup from './LoyaltyRatingAgeGroup'
 import LoyaltyRatingsGender from  './LoyaltyRatingsGender'
@@ -51,6 +55,7 @@ export default {
   name: 'ChartGrid',
   components: {
     ActualTotalsPie,
+    AverageVoucherSize,
     CustomerGrowth,
     LoyaltyRatingAgeGroup,
     LoyaltyRatingsGender,
