@@ -38,7 +38,7 @@ export default {
                         options.push({value: store, label: store})
                     })
 
-                    console.log(options)
+                    options.push({value: "all", label: "All stores"})
 
                     return options
                 })
