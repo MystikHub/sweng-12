@@ -5,7 +5,7 @@
         <MultiStoreCustomers ref="multiStoreChart"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
-        <RetentionRate />
+        <RetentionRate ref="retentionRate"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <VoucherPurchaseCounts />
@@ -14,7 +14,7 @@
         <StampTotalTrend ref="stampTotalTrend" />
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
-        <PercentHaveRedeemed />
+        <PercentHaveRedeemed ref="percentHaveRedeemed"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <ActualTotalsPie ref="actualTotalsPieChart"/>
@@ -71,6 +71,8 @@ export default {
       this.$refs.actualTotalsPieChart.getData(newStore)
       this.$refs.multiStoreChart.getData(newStore)
       this.$refs.mostPopularVoucher.getData(newStore)
+      this.$refs.percentHaveRedeemed.getData(newStore)
+      this.$refs.retentionRate.getData(newStore)
       this.$refs.stampTotalTrend.getData(newStore)
     }
   }
