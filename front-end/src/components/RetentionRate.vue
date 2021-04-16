@@ -50,14 +50,14 @@ export default {
         }
     },
     mounted() {
-        this.getData()
+        this.getData("")
     },
     methods: {
-        async getData() {
+        async getData(newStore) {
             this.loading = true
 
             // Get the chart data
-            const formattedData = await axios.get(`${constants.api_server}/retention_rate`)
+            const formattedData = await axios.get(`${constants.api_server}/retention_rate?store=${newStore}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")

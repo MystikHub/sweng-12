@@ -5,7 +5,7 @@
         <MultiStoreCustomers ref="multiStoreChart"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
-        <RetentionRate />
+        <RetentionRate ref="retentionRate"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <VoucherPurchaseCounts />
@@ -14,13 +14,16 @@
         <StampTotalTrend ref="stampTotalTrend" />
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
-        <PercentHaveRedeemed />
+        <PercentHaveRedeemed ref="percentHaveRedeemed"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <ActualTotalsPie ref="actualTotalsPieChart"/>
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
-        <MostPopularVoucher />
+        <MostPopularVoucher ref="mostPopularVoucher"/>
+      </el-col>
+      <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
+        <AverageVoucherSize />
       </el-col>
       <el-col :xs="24" :sm="12" :lg="8" :xl="6" id="card-bottom">
         <CustomerGrowth />
@@ -37,6 +40,7 @@
 
 <script>
 import ActualTotalsPie from './ActualTotalsPie'
+import AverageVoucherSize from './AverageVoucherSize'
 import CustomerGrowth from './CustomerGrowth'
 import LoyaltyRatingAgeGroup from './LoyaltyRatingAgeGroup'
 import LoyaltyRatingsGender from  './LoyaltyRatingsGender'
@@ -51,6 +55,7 @@ export default {
   name: 'ChartGrid',
   components: {
     ActualTotalsPie,
+    AverageVoucherSize,
     CustomerGrowth,
     LoyaltyRatingAgeGroup,
     LoyaltyRatingsGender,
@@ -63,8 +68,11 @@ export default {
   },
   methods: {
     updateCharts(newStore) {
-      this.$refs.multiStoreChart.getData(newStore)
       this.$refs.actualTotalsPieChart.getData(newStore)
+      this.$refs.multiStoreChart.getData(newStore)
+      this.$refs.mostPopularVoucher.getData(newStore)
+      this.$refs.percentHaveRedeemed.getData(newStore)
+      this.$refs.retentionRate.getData(newStore)
       this.$refs.stampTotalTrend.getData(newStore)
     }
   }
