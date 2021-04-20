@@ -23,7 +23,7 @@ import constants from '../constants'
 Vue.use(VueFusionCharts, FusionCharts, Pie2D, FusionTheme);
 
 const axios = require('axios').default;
-let store = '001'
+let store = ''
 let chartData = []
 
 export default {
@@ -54,6 +54,7 @@ export default {
     },
     methods: {
         async getData(store) {
+            this.loading = true
             console.log('Getting data with selected store = ' + this.selectedStore)
             // Get the chart data
             const formattedData = await axios.get(`${constants.api_server}/multi_store_customers?store=${store}`)

@@ -19,9 +19,7 @@ function countKeysPerLevel(storage, level, obj, store) {
 async function actualTotalsPie(req, res) {
   let findRawPurchasesJson = fs.readFileSync("./backendData/rawpurchases.json");
   let rawpurchasesJson = JSON.parse(findRawPurchasesJson);
-  let findRawRedemptionsJson = fs.readFileSync(
-    "./backendData/rawredemptions.json"
-  );
+  let findRawRedemptionsJson = fs.readFileSync("./backendData/rawredemptions.json");
   let rawredemptionsJson = JSON.parse(findRawRedemptionsJson);
   test = Object.keys(rawpurchasesJson);
   var testTotal = [];
@@ -62,7 +60,7 @@ async function actualTotalsPie(req, res) {
         sumTotal,
         sumRedeemed,
       });
-    } else if(req.query.scheme === uniq[uniq.length]){
+    } else if(req.query.scheme === "all"){
       try {
         res.send({
           label1: "Total users",

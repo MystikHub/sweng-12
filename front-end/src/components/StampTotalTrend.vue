@@ -12,31 +12,31 @@ import constants from "../constants";
 Charts(FusionCharts);
 Vue.use(VueFusionCharts, FusionCharts, Column2D, FusionTheme, FCComponent);
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
-
 const dataStore={}
-let newStore = ""
+
 
 export default {
-    name: 'app',
+    name: 'StampTotalTrend',
   data() {
     return {
       type: "mscolumn2d",
-      renderAt: "chart-container",
+      renderAt: "stamp-total-trend-chart",
       width: constants.chart_width,
       height: constants.chart_height,
       dataFormat: "json",
-      dataSource: dataStore
+      dataSource: dataStore,
+      loading: true
     }
   },
     mounted() {
-        this.getData(newStore)
+        this.getData('')
     },
     methods: {
         async getData(newStore) {
+            this.loading = true
 
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/stamp_total_Trend?scheme=${newStore}`)
+            const formattedData = await axios.get(`${constants.api_server}/stamp_total_Trend?store=${newStore}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
@@ -101,6 +101,7 @@ export default {
                     console.log(error)
                 });
             this.dataSource = formattedData;
+            this.loading = false
         }
     }
 }
@@ -108,8 +109,7 @@ export default {
 
 //STEP 4: Render the chart
 <template>
-  <div id="app">
-    <el-card id="chart-container">
+  <el-card id="stamp-total-trend-chart" v-loading="loading">
       <fusioncharts
       :type="type"
       :width="width"
@@ -119,5 +119,4 @@ export default {
       >
       </fusioncharts>
     </el-card>
-  </div>
 </template>

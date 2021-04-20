@@ -4,14 +4,17 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import constants from "../constants"
+
 //import the theme
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
+
 // register VueFusionCharts component
 Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
+
 const axios = require('axios').default;
-let scheme = ''
 // Copy datasource from 'Data' tab
 const dataStore = {}
+
 export default {
     name: 'app',
   data() {
@@ -26,13 +29,13 @@ export default {
         }
     },
     mounted() {
-        this.getData()
+        this.getData("")
     },
     methods: {
-        async getData() {
+        async getData(newStore) {
             this.loading = true
             // Get the chart data
-            const formattedData = await axios.get(`${constants.api_server}/total_redeemed_total_unredeemed?scheme=${scheme}`)
+            const formattedData = await axios.get(`${constants.api_server}/total_redeemed_total_unredeemed?scheme=${newStore}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")

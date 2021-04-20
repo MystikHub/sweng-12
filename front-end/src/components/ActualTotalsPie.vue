@@ -19,10 +19,13 @@ import VueFusionCharts from 'vue-fusioncharts';
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import constants from "../constants";
+
 //import the theme
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
+
 // register VueFusionCharts component
 Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
+
 const axios = require('axios').default;
 let newStore ="";
 // Copy datasource from 'Data' tab

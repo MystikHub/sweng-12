@@ -4,6 +4,8 @@
 
 We've been tasked by Squid Loyalty to come up with some new charts for their business dashboard. This repo hosts the front end and back ends for the new charts we're adding to their existing dashboard.
 
+![App preview](Preview.png)
+
 ## Working on features and charts using issues and branches
 
 Whenever we start on a new feature or chart, go through these steps:
@@ -92,3 +94,4 @@ Stefan Hutanu
 Sean Murphy
 James Fenlon
 Xiaowei Yang
+Stanislus Igboeli

@@ -29,6 +29,7 @@ export default {
     },
     methods: {
         async getData() {
+            this.loading = true
             // Get the list of stores
             let options = await axios.get(`${constants.api_server}/all_stores`)
                 .then(function (response) {
@@ -37,7 +38,7 @@ export default {
                         options.push({value: store, label: store})
                     })
 
-                    console.log(options)
+                    options.push({value: "all", label: "All stores"})
 
                     return options
                 })

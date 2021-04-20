@@ -8,6 +8,7 @@ const actualTotalsPie = require("./actualTotalsPie");
 const selector = require("./selector");
 const retention = require("./retention");
 const vouncherCount = require('./voucherCount');
+const customerGrowth = require("./customerGrowth");
 const mostPopularVoucherSize = require("./mostPopularVoucherSize");
 
 const port = 3000;
@@ -55,6 +56,36 @@ app.get('/voucher_purchase_counts', (req, res) => {
   enableLocalCors(res)
   vouncherCount(req, res)
 })
+app.get('/most_popular_scheme', (req, res) => {
+  enableLocalCors(res)
+  mostPopularVoucherSize(req, res)
+})
+
+app.get('/customer_growth', (req, res) => {
+  enableLocalCors(res)
+  customerGrowth(req, res)
+})
+
+// Visit http://localhost:3000/loyalty_rating_age_group in your browser to test this
+app.get('/loyalty_rating_age_group', (req, res) => {
+    enableLocalCors(res)
+
+    res.send({
+        "average_days_between_stamps":[19,12, 15, 21, 24, 27, 33],
+        "age_groups":  ["Under 19","19 to 24","24 to 30","30 to 40","40 to 50","50 to 60","Over 60"]
+    })
+})
+
+// Visit http://localhost:3000/loyalty_rating_gender in your browser to test this
+app.get('/loyalty_rating_gender', (req, res) => {
+    enableLocalCors(res)
+
+    res.send({
+        "average_days_between_stamps":[3.2,1.9],
+        "gender":  ["Male","Female"]
+    })
+})
+
 app.get('/most_popular_scheme', (req, res) => {
   enableLocalCors(res)
   mostPopularVoucherSize(req, res)

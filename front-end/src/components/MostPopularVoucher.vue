@@ -1,6 +1,6 @@
 <template>
     <div id="popularVoucher">
-    <el-card id="chart-container">
+    <el-card id="chart-container" v-loading="loading">
       <fusioncharts
       :type="type"
       :width="width"
@@ -26,8 +26,6 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion'
 Vue.use(VueFusionCharts, FusionCharts, Charts, FusionTheme)
 
 const axios = require('axios').default;
-let api_server = 'http://localhost:3000';
-let scheme = '002'
 // Copy datasource from 'Data' tab
 const dataStore = {}
 
@@ -41,15 +39,17 @@ export default {
             dataFormat: 'json',
             renderAt: "chart-container",
             dataSource: dataStore,
+            loading: true
         }
     },
     mounted() {
-        this.getData()
+        this.getData("")
     },
     methods: {
-        async getData() {
+        async getData(newStore) {
+            this.loading = true
             // Get the chart data
-            const formattedData = await axios.get(`${api_server}/most_popular_scheme?scheme=${scheme}`)
+            const formattedData = await axios.get(`${constants.api_server}/most_popular_scheme?scheme=${newStore}`)
                 .then(function (response) {
                     // Handle success
                     console.log("Here's the response")
@@ -94,7 +94,8 @@ export default {
                     console.log("Something went wrong!")
                     console.log(error)
                 });
-        this.dataSource = formattedData;
+            this.dataSource = formattedData;
+            this.loading = false
         },
     }
 }
