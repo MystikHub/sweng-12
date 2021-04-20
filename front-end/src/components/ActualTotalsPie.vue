@@ -30,7 +30,6 @@ const axios = require('axios').default;
 let newStore ="";
 // Copy datasource from 'Data' tab
 const dataStore = {}
-
 export default {
     name: 'app',
   data() {
@@ -90,4 +89,3 @@ export default {
     }
 }
 </script>
-
