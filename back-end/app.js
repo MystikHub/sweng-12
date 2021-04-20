@@ -56,6 +56,10 @@ app.get('/voucher_purchase_counts', (req, res) => {
   enableLocalCors(res)
   vouncherCount(req, res)
 })
+app.get('/most_popular_scheme', (req, res) => {
+  enableLocalCors(res)
+  mostPopularVoucherSize(req, res)
+})
 
 app.get('/customer_growth', (req, res) => {
   enableLocalCors(res)
