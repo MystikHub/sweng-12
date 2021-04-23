@@ -1,5 +1,32 @@
 # Software Engineering Project - Group 12
 
+## Running the project
+
+Instructions to run the project:
+1. Download the code bundle from our GitHub repo as a zip file or by cloning it with: `git clone https://github.com/MystikHub/sweng-12.git && cd sweng-12`
+2. This repo contains 3 folders:
+   * `back-end`: this folder contains the code used for our back end to the dashboard
+   * `back-end-reference`: this folder was used as a reference by our front end team during front end development
+   * `front-end`: this folder contains the code used for our front end to the dashboard
+
+3. Our code doesn't include the Node.js modules we used or the json data, so to run the back end:
+
+Make a new folder in `back-end/backendData` and copy your JSON files into it (rawpurchases.json, rawredemptions.json, newstructure.json, totals.json, and vouchers.json). Then run:
+```bash
+cd back-end
+yarn install
+yarn start
+```
+This will start the back end running on `localhost:3000` (port configurable near the top of app.js).
+
+4. Our front end doesn't include the Node.js dependencies either, but the startup process is simpler. In another terminal:
+```bash
+cd front-end
+yarn install
+yarn serve
+```
+This will start the back end running on `localhost:8080`. If you're also running the back end, you should be able to see the new dashboard at that address.
+
 ## About the project
 
 We've been tasked by Squid Loyalty to come up with some new charts for their business dashboard. This repo hosts the front end and back ends for the new charts we're adding to their existing dashboard.
