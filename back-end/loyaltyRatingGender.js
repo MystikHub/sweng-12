@@ -27,7 +27,6 @@ async function loyaltyRatingGender(req, res) {
             else {
                 customerGender = null
             }
-            console.log(customerGender)
 
             for (let i = 0; i < timeStamps.length - 1; i++) {
                 timeDifference.push(timeStamps[i + 1] - timeStamps[i])
